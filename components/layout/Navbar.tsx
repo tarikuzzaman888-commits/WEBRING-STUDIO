@@ -8,6 +8,7 @@ import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from '@/components/shared/ThemeToggle';
+import BrandLogo from '@/components/shared/BrandLogo';
 import { cn, getGMT6Time } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
 import type { SiteSettings } from '@/lib/types';
@@ -67,28 +68,16 @@ export default function Navbar({ siteSettings }: NavbarProps) {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-background border-b border-border shadow-sm'
+            ? 'border-b border-[var(--border)] shadow-sm glass bg-[var(--bg)]/95'
             : 'bg-transparent'
         )}
+        style={scrolled ? { backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(10,10,10,0.95)' : 'rgba(250,250,248,0.95)' } : undefined}
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group" id="nav-logo">
-              {showLogo && logoSrc?.asset ? (
-                <Image
-                  src={urlFor(logoSrc).width(160).url()}
-                  alt={siteSettings?.companyName || 'WEBRING'}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto"
-                  priority
-                />
-              ) : (
-                <span className="font-display text-2xl tracking-tight text-foreground group-hover:text-accent transition-colors">
-                  WEBRING
-                </span>
-              )}
+              <BrandLogo className="group-hover:opacity-80 transition-opacity" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -99,14 +88,14 @@ export default function Navbar({ siteSettings }: NavbarProps) {
                   href={link.href}
                   id={`nav-${link.label.toLowerCase()}`}
                   className={cn(
-                    'relative font-body text-sm tracking-wide transition-colors duration-300 hover:text-accent',
-                    pathname === link.href ? 'text-accent' : 'text-foreground'
+                    'relative font-body text-sm tracking-wide transition-colors duration-300 hover:text-[var(--accent)]',
+                    pathname === link.href ? 'text-[var(--accent)]' : 'text-[var(--text)]'
                   )}
                 >
                   {link.label}
                   {pathname === link.href && (
                     <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-[var(--accent)]"
                       layoutId="nav-underline"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
@@ -118,8 +107,8 @@ export default function Navbar({ siteSettings }: NavbarProps) {
             {/* Right Section */}
             <div className="hidden lg:flex items-center gap-4">
               {/* Live Clock GMT+6 */}
-              <div className="font-mono text-xs text-muted tracking-wider" id="nav-clock">
-                {clock} <span className="text-accent">GMT+6</span>
+              <div className="font-mono text-xs text-[var(--muted)] tracking-wider" id="nav-clock">
+                {clock} <span className="text-[var(--accent)]">GMT+6</span>
               </div>
 
               <ThemeToggle />
@@ -127,7 +116,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               <Link
                 href="/book"
                 id="nav-book-call"
-                className="px-5 py-2.5 bg-accent text-[#0A0A0A] font-body text-sm font-medium rounded-full hover:bg-accent/90 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
+                className="px-5 py-2.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none transition-all duration-300 hover:shadow-lg hover:shadow-[var(--accent)]/20"
               >
                 Book a Call
               </Link>
@@ -141,9 +130,9 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               aria-label="Toggle mobile menu"
             >
               {mobileOpen ? (
-                <X className="w-6 h-6 text-foreground" />
+                <X className="w-6 h-6 text-[var(--text)]" />
               ) : (
-                <Menu className="w-6 h-6 text-foreground" />
+                <Menu className="w-6 h-6 text-[var(--text)]" />
               )}
             </button>
           </div>
@@ -154,7 +143,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-background flex flex-col justify-center items-center"
+            className="fixed inset-0 z-40 bg-[var(--bg)] flex flex-col justify-center items-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -166,15 +155,15 @@ export default function Navbar({ siteSettings }: NavbarProps) {
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
+                  transition={{ delay: i * 0.06 }}
                 >
                   <Link
                     href={link.href}
                     id={`mobile-nav-${link.label.toLowerCase()}`}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      'font-display text-4xl tracking-tight transition-colors',
-                      pathname === link.href ? 'text-accent' : 'text-foreground hover:text-accent'
+                      'font-display text-4xl dark:uppercase tracking-tight transition-colors',
+                      pathname === link.href ? 'text-[var(--accent)]' : 'text-[var(--text)] hover:text-[var(--accent)]'
                     )}
                   >
                     {link.label}
@@ -185,12 +174,12 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.4 }}
                 className="flex flex-col items-center gap-4 mt-8"
               >
                 <div className="flex items-center gap-4">
                   <ThemeToggle />
-                  <span className="font-mono text-xs text-muted">
+                  <span className="font-mono text-xs text-[var(--muted)]">
                     {clock} GMT+6
                   </span>
                 </div>
@@ -198,7 +187,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
                   href="/book"
                   id="mobile-nav-book"
                   onClick={() => setMobileOpen(false)}
-                  className="px-8 py-3 bg-accent text-[#0A0A0A] font-body text-base font-medium rounded-full"
+                  className="px-8 py-3 bg-[var(--accent)] text-[var(--accent-text)] font-body text-base font-extrabold uppercase rounded-md dark:rounded-none"
                 >
                   Book a Call
                 </Link>

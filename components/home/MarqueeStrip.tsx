@@ -5,35 +5,21 @@ interface MarqueeStripProps {
 }
 
 export default function MarqueeStrip({ text }: MarqueeStripProps) {
-  const marqueeContent = text || 'AI Product Photography ✦ Brand Identity ✦ E-commerce Visuals ✦ Lifestyle Shoots ✦ Video Content ✦ Creative Direction ✦';
-
-  const repeatedText = `${marqueeContent} ${marqueeContent} ${marqueeContent} ${marqueeContent} `;
+  const marqueeText = text || 'AI PHOTOGRAPHY ✦ BRAND IDENTITY ✦ E-COMMERCE VISUALS ✦ LIFESTYLE SCENES ✦ VIDEO CONTENT ✦';
+  const repeated = `${marqueeText} ${marqueeText} ${marqueeText} `;
 
   return (
-    <section className="bg-[#0D0D0D] py-6 md:py-8 overflow-hidden" id="marquee-strip">
-      {/* Row 1 — Left to Right */}
-      <div className="marquee-container mb-3">
-        <div className="marquee-track">
-          <span className="font-display text-2xl md:text-3xl lg:text-4xl text-[#F5F5F5]/90 whitespace-nowrap tracking-tight">
-            {repeatedText}
-          </span>
-          <span className="font-display text-2xl md:text-3xl lg:text-4xl text-[#F5F5F5]/90 whitespace-nowrap tracking-tight">
-            {repeatedText}
-          </span>
-        </div>
-      </div>
-
-      {/* Row 2 — Right to Left (gold) */}
+    <div className="bg-[#0D0D0D] dark:bg-[#CCFF00] py-4 overflow-hidden">
       <div className="marquee-container">
-        <div className="marquee-track-reverse">
-          <span className="font-display text-2xl md:text-3xl lg:text-4xl text-[#C8A96E]/80 whitespace-nowrap tracking-tight italic">
-            {repeatedText}
+        <div className="marquee-track">
+          <span className="font-display text-base md:text-lg font-bold uppercase tracking-widest text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
+            {repeated}
           </span>
-          <span className="font-display text-2xl md:text-3xl lg:text-4xl text-[#C8A96E]/80 whitespace-nowrap tracking-tight italic">
-            {repeatedText}
+          <span className="font-display text-base md:text-lg font-bold uppercase tracking-widest text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
+            {repeated}
           </span>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

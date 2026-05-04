@@ -27,7 +27,7 @@ const wordAnimation = {
 export default function HeroSection({ data }: HeroSectionProps) {
   const line1 = data?.heroLine1 || 'We Engineer';
   const line2 = data?.heroLine2 || 'Reality.';
-  const subtitle = data?.heroSubtitle || 'AI-powered product photography and brand visuals that convert browsers into buyers. Based in Bangladesh, serving brands worldwide.';
+  const subtitle = data?.heroSubtitle || 'AI VISUALS. STUDIO PRECISION. Scale your product imagery from raw to premium — instantly. Built for brands that move fast.';
   const socialProof = data?.socialProof || 'Trusted by 200+ brands across 15 countries';
   const cta1 = data?.cta1Text || 'See Our Work';
   const cta2 = data?.cta2Text || 'Book a Free Call';
@@ -37,26 +37,28 @@ export default function HeroSection({ data }: HeroSectionProps) {
   const line1Words = line1.split(' ');
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Grain Overlay */}
+    <section id="hero" className="relative min-h-screen flex items-center overflow-x-hidden pt-8 md:pt-16">
       <div className="grain-overlay" />
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-32 pb-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-16 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="lg:col-span-7">
             {/* Label */}
-            <motion.span
-              className="font-mono text-xs tracking-[0.25em] uppercase text-accent inline-block mb-8"
+            <motion.div
+              className="flex items-center gap-4 mb-6"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
             >
-              AI × Photography × Branding
-            </motion.span>
+              <div className="w-8 h-px bg-[var(--accent)]" />
+              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">
+                AI-POWERED PRODUCT PHOTOGRAPHY
+              </span>
+            </motion.div>
 
             {/* Giant Heading */}
-            <h1 className="font-display text-display-xl mb-8">
+            <h1 className="font-display font-black uppercase tracking-tight text-[3.5rem] md:text-[5rem] lg:text-[6rem] leading-[0.95] mb-6">
               {allWords.map((word, i) => (
                 <motion.span
                   key={i}
@@ -73,7 +75,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
             {/* Subtitle */}
             <motion.p
-              className="font-body text-muted text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
+              className="font-body text-[var(--muted)] text-base md:text-lg max-w-xl mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.35 }}
@@ -83,7 +85,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
             {/* CTAs */}
             <motion.div
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-wrap gap-4 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.35 }}
@@ -91,14 +93,14 @@ export default function HeroSection({ data }: HeroSectionProps) {
               <Link
                 href="/portfolio"
                 id="hero-cta-work"
-                className="px-8 py-3.5 bg-accent text-[#0A0A0A] font-body text-sm font-medium rounded-full hover:shadow-lg hover:shadow-accent/30 transition-all duration-300"
+                className="px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/30 transition-all duration-300"
               >
                 {cta1}
               </Link>
               <Link
                 href="/book"
                 id="hero-cta-book"
-                className="px-8 py-3.5 border border-foreground/20 text-foreground font-body text-sm font-medium rounded-full hover:border-accent hover:text-accent transition-all duration-300"
+                className="px-8 py-3.5 border-2 border-[var(--accent)] text-[var(--accent)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none bg-transparent hover:bg-[var(--accent)] hover:text-[var(--accent-text)] transition-all duration-300"
               >
                 {cta2}
               </Link>
@@ -115,13 +117,13 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 {[1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
-                    className="w-8 h-8 rounded-full bg-surface border-2 border-background flex items-center justify-center"
+                    className="w-8 h-8 rounded-full bg-[var(--surface)] border-2 border-[var(--bg)] flex items-center justify-center"
                   >
-                    <span className="text-[10px] text-muted font-mono">★</span>
+                    <span className="text-[10px] text-[var(--muted)] font-mono">★</span>
                   </div>
                 ))}
               </div>
-              <span className="font-body text-sm text-muted">{socialProof}</span>
+              <span className="font-body text-sm text-[var(--muted)]">{socialProof}</span>
             </motion.div>
           </div>
 
@@ -132,12 +134,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 heroImages.slice(0, 6).map((img, i) => (
                   <motion.div
                     key={i}
-                    className={`relative overflow-hidden rounded-lg ${
+                    className={`relative overflow-hidden rounded-lg dark:rounded-none ${
                       i % 3 === 0 ? 'aspect-[3/4]' : i % 3 === 1 ? 'aspect-square' : 'aspect-[4/5]'
                     }`}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
                   >
                     <Image
                       src={urlFor(img).width(400).height(500).url()}
@@ -149,22 +151,28 @@ export default function HeroSection({ data }: HeroSectionProps) {
                   </motion.div>
                 ))
               ) : (
-                // Placeholder grid when no images uploaded
-                Array.from({ length: 6 }).map((_, i) => (
+                [
+                  { src: '/images/hero/watch.png', aspect: 'aspect-[3/4]' },
+                  { src: '/images/hero/perfume.png', aspect: 'aspect-square' },
+                  { src: '/images/hero/camera.png', aspect: 'aspect-[4/5]' },
+                  { src: '/images/hero/sneaker.png', aspect: 'aspect-[3/4]' },
+                  { src: '/images/hero/watch.png', aspect: 'aspect-square' },
+                  { src: '/images/hero/perfume.png', aspect: 'aspect-[4/5]' },
+                ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className={`relative overflow-hidden rounded-lg bg-surface border border-border ${
-                      i % 3 === 0 ? 'aspect-[3/4]' : i % 3 === 1 ? 'aspect-square' : 'aspect-[4/5]'
-                    }`}
+                    className={`relative overflow-hidden rounded-lg dark:rounded-none bg-[var(--surface)] border border-[var(--border)] ${item.aspect}`}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-mono text-xs text-muted/50">
-                        {i + 1}
-                      </span>
-                    </div>
+                    <Image
+                      src={item.src}
+                      alt={`WEBRING showcase ${i + 1}`}
+                      fill
+                      className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      sizes="300px"
+                    />
                   </motion.div>
                 ))
               )}
@@ -179,7 +187,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <ArrowDown className="w-5 h-5 text-accent" />
+        <ArrowDown className="w-5 h-5 text-[var(--accent)]" />
       </motion.div>
     </section>
   );

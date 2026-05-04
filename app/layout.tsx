@@ -73,7 +73,8 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-
+          {/* Global grain texture overlay */}
+          <div className="grain-overlay-global" />
           <Navbar siteSettings={siteSettings} />
           <main className="min-h-screen">{children}</main>
           <Footer siteSettings={siteSettings} />
@@ -82,8 +83,8 @@ export default async function RootLayout({
             toastOptions={{
               style: {
                 background: 'var(--surface)',
-                color: 'var(--foreground)',
-                border: '1px solid var(--border-color)',
+                color: 'var(--text)',
+                border: '1px solid var(--border)',
               },
             }}
           />

@@ -13,15 +13,15 @@ export default function TrustedBrands({ brands }: TrustedBrandsProps) {
   const hasBrands = brands && brands.length > 0;
 
   return (
-    <section className="py-16 md:py-24 border-y border-border" id="trusted-brands">
+    <section className="py-16 md:py-24 border-y border-[var(--border)]" id="trusted-brands">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
         <motion.p
-          className="font-mono text-xs tracking-[0.25em] uppercase text-muted text-center mb-10"
+          className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--muted)] text-center mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Trusted By
+          // Trusted By
         </motion.p>
 
         {hasBrands ? (
@@ -51,13 +51,13 @@ export default function TrustedBrands({ brands }: TrustedBrandsProps) {
             {Array.from({ length: 6 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-28 h-10 bg-surface rounded border border-border flex items-center justify-center"
+                className="w-28 h-10 bg-[var(--surface)] rounded-md dark:rounded-none border border-[var(--border)] flex items-center justify-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
               >
-                <span className="font-mono text-[9px] text-muted/30">BRAND</span>
+                <span className="font-mono text-[9px] text-[var(--muted)]/30">BRAND</span>
               </motion.div>
             ))}
           </div>

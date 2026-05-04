@@ -27,25 +27,25 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
         <div className="grain-overlay" />
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <motion.span
-            className="font-mono text-xs tracking-[0.25em] uppercase text-accent mb-6 block"
+            className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            About Us
+            // About Us
           </motion.span>
           <motion.h1
-            className="font-display text-display-xl mb-8"
+            className="font-display font-black uppercase tracking-tight text-display-xl mb-8"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             We Are WEBRING
           </motion.h1>
           <motion.p
-            className="font-body text-muted text-lg md:text-xl max-w-2xl leading-relaxed"
+            className="font-body text-[var(--muted)] text-lg md:text-xl max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
           >
             We are a team of AI-native creatives who believe that every product deserves
             visuals that transcend reality. Founded in 2024 in Bangladesh, we combine cutting-edge
@@ -57,11 +57,11 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
       </section>
 
       {/* Mission */}
-      <section className="py-16 md:py-24 bg-surface">
+      <section className="py-16 md:py-24 bg-[var(--surface)]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <motion.h2
-              className="font-display text-display-md mb-6"
+              className="font-display font-black uppercase tracking-tight text-display-md mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -69,7 +69,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
               Our Mission
             </motion.h2>
             <motion.p
-              className="font-body text-muted text-lg leading-relaxed"
+              className="font-body text-[var(--muted)] text-lg leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -85,13 +85,13 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
       </section>
 
       {/* Tools Marquee */}
-      <section className="bg-[#0D0D0D] py-6 overflow-hidden">
+      <section className="bg-[#0D0D0D] dark:bg-[#CCFF00] py-4 overflow-hidden">
         <div className="marquee-container">
           <div className="marquee-track">
-            <span className="font-mono text-lg md:text-xl text-[#C8A96E]/70 whitespace-nowrap tracking-widest">
+            <span className="font-mono text-lg md:text-xl font-bold uppercase text-[var(--accent)] dark:text-[#000000] whitespace-nowrap tracking-widest">
               {repeated}
             </span>
-            <span className="font-mono text-lg md:text-xl text-[#C8A96E]/70 whitespace-nowrap tracking-widest">
+            <span className="font-mono text-lg md:text-xl font-bold uppercase text-[var(--accent)] dark:text-[#000000] whitespace-nowrap tracking-widest">
               {repeated}
             </span>
           </div>
@@ -102,7 +102,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
       <section className="py-24 md:py-32" id="team-section">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <SectionHeading
-            label="Our Team"
+            label="// Our Team"
             title="The minds behind the magic."
             subtitle="Three creatives, one mission — engineer reality for brands worldwide."
           />
@@ -115,38 +115,38 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
               >
                 {/* Photo */}
-                <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-surface border border-border mb-6">
+                <div className="relative aspect-[3/4] rounded-lg dark:rounded-none overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-6">
                   {member.photo?.asset ? (
                     <Image
                       src={urlFor(member.photo).width(500).height(667).url()}
                       alt={member.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 dark:grayscale-[20%] dark:group-hover:grayscale-0"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <User className="w-16 h-16 text-muted/20" />
+                      <User className="w-16 h-16 text-[var(--muted)]/20" />
                     </div>
                   )}
                 </div>
 
                 {/* Info */}
                 <div>
-                  <h3 className="font-display text-2xl text-foreground mb-1">
+                  <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-1">
                     {member.name}
                   </h3>
-                  <span className="inline-block font-mono text-xs tracking-wider uppercase text-accent bg-accent/10 px-3 py-1 rounded-full mb-3">
+                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-md dark:rounded-none mb-3">
                     {member.role}
                   </span>
 
                   {member.responsibilities && member.responsibilities.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
                       {member.responsibilities.map((r) => (
-                        <span key={r} className="font-body text-xs text-muted border border-border px-2 py-0.5 rounded">
+                        <span key={r} className="font-body text-xs text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-sm">
                           {r}
                         </span>
                       ))}
@@ -154,32 +154,23 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   )}
 
                   {member.bio && (
-                    <p className="font-body text-sm text-muted leading-relaxed mb-4">
+                    <p className="font-body text-sm text-[var(--muted)] leading-relaxed mb-4">
                       {member.bio}
                     </p>
                   )}
 
-                  {/* Social */}
                   <div className="flex gap-3">
                     {member.instagramUrl && (
-                      <a
-                        href={member.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:border-accent transition-colors"
-                        aria-label={`${member.name} Instagram`}
-                      >
+                      <a href={member.instagramUrl} target="_blank" rel="noopener noreferrer"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-md dark:rounded-none transition-colors"
+                        aria-label={`${member.name} Instagram`}>
                         <Instagram className="w-3.5 h-3.5" />
                       </a>
                     )}
                     {member.linkedinUrl && (
-                      <a
-                        href={member.linkedinUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:border-accent transition-colors"
-                        aria-label={`${member.name} LinkedIn`}
-                      >
+                      <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-md dark:rounded-none transition-colors"
+                        aria-label={`${member.name} LinkedIn`}>
                         <Linkedin className="w-3.5 h-3.5" />
                       </a>
                     )}

@@ -73,7 +73,7 @@ export default async function PortfolioDetailPage({
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 pt-8">
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-2 font-body text-sm text-muted hover:text-accent transition-colors"
+          className="inline-flex items-center gap-2 font-body text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Portfolio
@@ -83,7 +83,7 @@ export default async function PortfolioDetailPage({
       {/* Hero Image */}
       <section className="py-8">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-surface">
+          <div className="relative aspect-[16/9] rounded-lg dark:rounded-none overflow-hidden bg-[var(--surface)]">
             <Image
               src={urlFor(item.mainImage).width(1400).height(788).url()}
               alt={item.title}
@@ -101,12 +101,12 @@ export default async function PortfolioDetailPage({
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
+              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)] mb-4 block">
                 {item.category}
               </span>
-              <h1 className="font-display text-display-lg mb-6">{item.title}</h1>
+              <h1 className="font-display font-black uppercase tracking-tight text-display-lg mb-6">{item.title}</h1>
               {item.description && (
-                <p className="font-body text-muted text-lg leading-relaxed">
+                <p className="font-body text-[var(--muted)] text-lg leading-relaxed">
                   {item.description}
                 </p>
               )}
@@ -114,20 +114,20 @@ export default async function PortfolioDetailPage({
             <div className="space-y-6">
               {item.clientIndustry && (
                 <div>
-                  <h3 className="font-mono text-xs tracking-wider uppercase text-muted mb-2">Industry</h3>
-                  <p className="font-body text-foreground">{item.clientIndustry}</p>
+                  <h3 className="font-mono text-[11px] tracking-[3px] uppercase text-[var(--muted)] mb-2">Industry</h3>
+                  <p className="font-body text-[var(--text)]">{item.clientIndustry}</p>
                 </div>
               )}
               <div>
-                <h3 className="font-mono text-xs tracking-wider uppercase text-muted mb-2">Category</h3>
-                <p className="font-body text-foreground">{item.category}</p>
+                <h3 className="font-mono text-[11px] tracking-[3px] uppercase text-[var(--muted)] mb-2">Category</h3>
+                <p className="font-body text-[var(--text)]">{item.category}</p>
               </div>
               {item.tags && item.tags.length > 0 && (
                 <div>
-                  <h3 className="font-mono text-xs tracking-wider uppercase text-muted mb-2">Tags</h3>
+                  <h3 className="font-mono text-[11px] tracking-[3px] uppercase text-[var(--muted)] mb-2">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
-                      <span key={tag} className="inline-flex items-center gap-1 font-mono text-xs bg-surface border border-border px-3 py-1 rounded-full">
+                      <span key={tag} className="inline-flex items-center gap-1 font-mono text-xs bg-[var(--surface)] border border-[var(--border)] px-3 py-1 rounded-md dark:rounded-none">
                         <Tag className="w-3 h-3" />
                         {tag}
                       </span>
@@ -144,7 +144,7 @@ export default async function PortfolioDetailPage({
       {item.beforeImage && item.afterImage && (
         <section className="pb-16">
           <div className="max-w-4xl mx-auto px-6 md:px-10 lg:px-16">
-            <h2 className="font-display text-display-md text-center mb-8">Before & After</h2>
+            <h2 className="font-display font-black uppercase tracking-tight text-display-md text-center mb-8">Before & After</h2>
             <PortfolioDetailClient
               beforeImage={item.beforeImage}
               afterImage={item.afterImage}
@@ -155,15 +155,15 @@ export default async function PortfolioDetailPage({
 
       {/* Related */}
       {related && related.length > 0 && (
-        <section className="py-16 bg-surface">
+        <section className="py-16 bg-[var(--surface)]">
           <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-            <h2 className="font-display text-display-md mb-10">Related Projects</h2>
+            <h2 className="font-display font-black uppercase tracking-tight text-display-md mb-10">Related Projects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((r) => (
                 <Link
                   key={r._id}
                   href={`/portfolio/${r.slug.current}`}
-                  className="group relative aspect-[3/4] rounded-xl overflow-hidden"
+                  className="group relative aspect-[3/4] rounded-lg dark:rounded-none overflow-hidden"
                 >
                   <Image
                     src={urlFor(r.mainImage).width(500).height(667).url()}
@@ -173,10 +173,10 @@ export default async function PortfolioDetailPage({
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                    <span className="font-mono text-[10px] text-[#C8A96E] tracking-wider uppercase mb-1">
+                    <span className="font-mono text-[10px] tracking-[3px] uppercase text-[var(--accent)]">
                       {r.category}
                     </span>
-                    <h3 className="font-display text-lg text-white flex items-center gap-2">
+                    <h3 className="font-condensed font-black uppercase text-lg text-white flex items-center gap-2">
                       {r.title}
                       <ArrowUpRight className="w-4 h-4" />
                     </h3>
@@ -191,13 +191,13 @@ export default async function PortfolioDetailPage({
       {/* CTA */}
       <section className="py-20 text-center">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <h2 className="font-display text-display-md mb-4">Start a Similar Project</h2>
-          <p className="font-body text-muted mb-8 max-w-md mx-auto">
+          <h2 className="font-display font-black uppercase tracking-tight text-display-md mb-4">Start a Similar Project</h2>
+          <p className="font-body text-[var(--muted)] mb-8 max-w-md mx-auto">
             Impressed by what you see? Let&#39;s create something equally stunning for your brand.
           </p>
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-[#0A0A0A] font-body text-sm font-medium rounded-full hover:shadow-lg hover:shadow-accent/20 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all"
           >
             Book a Free Call
           </Link>
