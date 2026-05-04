@@ -46,7 +46,7 @@ export default function PortfolioPreview({ items }: PortfolioPreviewProps) {
               >
                 <Link
                   href={`/portfolio/${item.slug.current}`}
-                  className="group relative block overflow-hidden rounded-lg dark:rounded-none"
+                  className="group relative block overflow-hidden rounded-[2rem]"
                 >
                   <div className="relative aspect-[3/4]">
                     <Image
@@ -71,7 +71,7 @@ export default function PortfolioPreview({ items }: PortfolioPreviewProps) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-[var(--surface)] rounded-lg dark:rounded-none border border-[var(--border)]">
+          <div className="text-center py-20 bg-[var(--surface)] rounded-[2rem] border border-[var(--border)]">
             <p className="font-display uppercase text-2xl text-[var(--text)] mb-4">Portfolio Coming Soon</p>
             <p className="font-body text-[var(--muted)]">
               Add portfolio items through Sanity Studio at <code className="font-mono text-[var(--accent)] text-sm">/studio</code>

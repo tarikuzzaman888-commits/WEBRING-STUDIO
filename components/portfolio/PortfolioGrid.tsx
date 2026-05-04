@@ -26,7 +26,7 @@ export default function PortfolioGrid({ items }: PortfolioGridProps) {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 font-mono text-xs tracking-[2px] uppercase transition-all duration-300 rounded-md dark:rounded-none ${
+            className={`px-4 py-2 font-mono text-xs tracking-[2px] uppercase transition-all duration-300 rounded-full rounded-[2rem] ${
               activeCategory === cat
                 ? 'bg-[var(--accent)] text-[var(--accent-text)]'
                 : 'border border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
@@ -52,7 +52,7 @@ export default function PortfolioGrid({ items }: PortfolioGridProps) {
             >
               <Link
                 href={`/portfolio/${item.slug.current}`}
-                className="group relative block overflow-hidden rounded-lg dark:rounded-none"
+                className="group relative block overflow-hidden rounded-[2rem]"
               >
                 <div className="relative aspect-[3/4]">
                   {item.mainImage?.asset ? (

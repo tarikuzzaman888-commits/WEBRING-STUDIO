@@ -65,7 +65,7 @@ export default function ServicesPageClient({ services }: ServicesPageClientProps
             }`}>
               {/* Image */}
               <motion.div
-                className="relative aspect-[4/3] rounded-lg dark:rounded-none overflow-hidden bg-[var(--surface)] border border-[var(--border)]"
+                className="relative aspect-[4/3] rounded-[2rem] overflow-hidden bg-[var(--surface)] border border-[var(--border)]"
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
@@ -120,7 +120,7 @@ export default function ServicesPageClient({ services }: ServicesPageClientProps
                   )}
                   <Link
                     href="/book"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all group"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all group"
                   >
                     Get Started
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

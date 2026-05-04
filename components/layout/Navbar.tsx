@@ -12,6 +12,7 @@ import BrandLogo from '@/components/shared/BrandLogo';
 import { cn, getGMT6Time } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
 import type { SiteSettings } from '@/lib/types';
+import MarqueeStrip from '@/components/home/MarqueeStrip';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -63,16 +64,18 @@ export default function Navbar({ siteSettings }: NavbarProps) {
 
   return (
     <>
-      <nav
-        id="main-navbar"
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'border-b border-[var(--border)] shadow-sm glass bg-[var(--bg)]/95'
-            : 'bg-transparent'
-        )}
-        style={scrolled ? { backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(10,10,10,0.95)' : 'rgba(250,250,248,0.95)' } : undefined}
-      >
+      <div className="fixed top-0 left-0 right-0 z-50 flex flex-col">
+        {pathname === '/' && <MarqueeStrip text="" />}
+        <nav
+          id="main-navbar"
+          className={cn(
+            'relative w-full transition-all duration-300',
+            scrolled
+              ? 'border-b border-[var(--border)] shadow-sm glass bg-[var(--bg)]/95'
+              : 'bg-transparent'
+          )}
+          style={scrolled ? { backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(10,10,10,0.95)' : 'rgba(250,250,248,0.95)' } : undefined}
+        >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -116,7 +119,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               <Link
                 href="/book"
                 id="nav-book-call"
-                className="px-5 py-2.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none transition-all duration-300 hover:shadow-lg hover:shadow-[var(--accent)]/20"
+                className="px-5 py-2.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--accent)]/20"
               >
                 Book a Call
               </Link>
@@ -138,6 +141,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
           </div>
         </div>
       </nav>
+    </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -187,7 +191,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
                   href="/book"
                   id="mobile-nav-book"
                   onClick={() => setMobileOpen(false)}
-                  className="px-8 py-3 bg-[var(--accent)] text-[var(--accent-text)] font-body text-base font-extrabold uppercase rounded-md dark:rounded-none"
+                  className="px-8 py-3 bg-[var(--accent)] text-[var(--accent-text)] font-body text-base font-extrabold uppercase rounded-full rounded-[2rem]"
                 >
                   Book a Call
                 </Link>

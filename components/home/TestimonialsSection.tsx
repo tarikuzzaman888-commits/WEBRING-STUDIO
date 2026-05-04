@@ -50,7 +50,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
             <button
               onClick={() => emblaApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="w-10 h-10 border border-[var(--border)] hover:border-[var(--accent)] flex items-center justify-center rounded-md dark:rounded-none transition-colors disabled:opacity-30"
+              className="w-10 h-10 border border-[var(--border)] hover:border-[var(--accent)] flex items-center justify-center rounded-full rounded-[2rem] transition-colors disabled:opacity-30"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -58,7 +58,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
             <button
               onClick={() => emblaApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="w-10 h-10 border border-[var(--border)] hover:border-[var(--accent)] flex items-center justify-center rounded-md dark:rounded-none transition-colors disabled:opacity-30"
+              className="w-10 h-10 border border-[var(--border)] hover:border-[var(--accent)] flex items-center justify-center rounded-full rounded-[2rem] transition-colors disabled:opacity-30"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-4 h-4" />
@@ -70,7 +70,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
           <div className="flex gap-6">
             {items.map((t) => (
               <div key={t._id} className="flex-none w-full sm:w-[48%] lg:w-[32%]">
-                <div className="p-8 bg-[var(--surface-2)] border border-[var(--border)] hover:border-[var(--accent)] rounded-lg dark:rounded-none transition-colors h-full flex flex-col">
+                <div className="p-8 bg-[var(--surface-2)] border border-[var(--border)] hover:border-[var(--accent)] rounded-[2rem] transition-colors h-full flex flex-col">
                   {/* Stars */}
                   <div className="flex gap-1 mb-6">
                     {Array.from({ length: t.rating || 5 }).map((_, i) => (

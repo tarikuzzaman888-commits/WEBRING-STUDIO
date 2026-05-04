@@ -2,138 +2,196 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { Check, ChevronDown, Sparkles } from 'lucide-react';
+import { Check, Plus, Minus } from 'lucide-react';
 import type { PricingTier } from '@/lib/types';
-
-const faqs = [
-  { question: 'What file formats do you deliver?', answer: 'We deliver in all major formats including PNG, JPEG, WebP, TIFF, and PSD. All images are optimized for web (Shopify, Amazon, WooCommerce) and print. Video content is delivered in MP4 and MOV formats.' },
-  { question: 'How does the AI photography process work?', answer: 'We combine advanced AI models (Midjourney, Firefly, ComfyUI) with professional editing in Photoshop and Lightroom. Your product photos or references are enhanced, placed in custom scenes, and refined by our team to ensure photorealistic results that are indistinguishable from traditional photography.' },
-  { question: 'Do you offer refunds or guarantees?', answer: 'Yes! We offer unlimited revisions on Growth and Enterprise plans, and 2 rounds on Starter. We work until you are 100% satisfied. If we cannot meet your requirements, we offer a full refund — no questions asked.' },
-  { question: 'What is the typical turnaround time?', answer: 'Starter projects are delivered within 48 hours. Growth projects within 24 hours. Enterprise clients get same-day turnaround for urgent requests. Rush delivery is available on all plans for an additional fee.' },
-  { question: 'Can you work with any product category?', answer: 'Absolutely! We specialize in jewelry, furniture, supplements, clothing, and dropshipping products, but we have experience with virtually every product category. From food to electronics, cosmetics to industrial equipment — we can create stunning visuals for any product.' },
-];
 
 interface PricingPageClientProps {
   tiers: PricingTier[];
 }
 
+const faqs = [
+  { question: 'How does AI product photography work?', answer: 'You send us your raw product images (even smartphone photos). We use a combination of AI tools like Midjourney, Stable Diffusion, and Adobe Firefly along with expert Photoshop work to transform them into studio-quality visuals. The result is indistinguishable from a professional photoshoot.' },
+  { question: "What's the typical turnaround time?", answer: 'Our standard delivery time is 2-4 business days depending on the complexity of the project. Rush delivery options are available if you need your visuals sooner.' },
+  { question: 'Do you work with international clients?', answer: 'Yes! We work with brands globally. All our communication and delivery are handled digitally, making it seamless to work with us from anywhere in the world.' },
+  { question: 'Can I request revisions?', answer: 'Absolutely. We offer revision rounds on all our packages to ensure the final result perfectly matches your brand vision.' },
+  { question: 'What file formats do you deliver?', answer: 'We deliver high-resolution JPEG, PNG (with transparency if needed), and WebP formats optimized for e-commerce platforms like Amazon and Shopify.' },
+  { question: 'Do you offer refunds?', answer: 'We strive for 100% satisfaction. If we cannot meet your requirements after the revision rounds, we offer a fair refund policy based on the project stage.' },
+];
+
 export default function PricingPageClient({ tiers }: PricingPageClientProps) {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | '6month' | 'yearly'>('monthly');
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Billing period multiplier/logic
+  const getDisplayPrice = (basePrice: number) => {
+    if (billingPeriod === '6month') return Math.round(basePrice * 0.9); // 10% off
+    if (billingPeriod === 'yearly') return Math.round(basePrice * 0.8); // 20% off
+    return basePrice;
+  };
+
+  const periodLabel = billingPeriod === 'monthly' ? 'per month' : billingPeriod === '6month' ? 'per project' : 'per year';
 
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="grain-overlay" />
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 text-center">
-          <motion.span
-            className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block"
+    <div className="bg-[var(--bg)] min-h-screen pt-32 pb-20">
+      
+      {/* Header Section */}
+      <section className="mb-20">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 text-center">
+          <motion.div 
+            className="flex justify-center items-center gap-3 mb-6"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           >
-            // Pricing
-          </motion.span>
-          <motion.h1
-            className="font-display font-black uppercase tracking-tight text-display-xl mb-6"
-            initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+            <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">// INVESTMENT</span>
+          </motion.div>
+          
+          <motion.h1 
+            className="font-display font-black uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-[var(--text)] mb-8"
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
           >
-            Simple, transparent pricing.
+            Transparent Pricing.<br />Premium Results.
           </motion.h1>
-          <motion.p
-            className="font-body text-[var(--muted)] text-lg max-w-xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+
+          <motion.p 
+            className="font-body text-[var(--muted)] text-lg md:text-xl max-w-2xl mx-auto mb-12"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
           >
-            Choose the plan that fits your brand. All plans include AI-powered quality and our satisfaction guarantee.
+            No hidden fees. Just world-class visual engineering tailored to your brand's scale.
           </motion.p>
-        </div>
-      </section>
 
-      {/* Pricing Cards */}
-      <section className="pb-24 md:pb-32">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {tiers.map((tier, i) => (
-              <motion.div
-                key={tier._id}
-                className={`relative rounded-lg dark:rounded-none p-8 flex flex-col ${
-                  tier.highlighted
-                    ? 'bg-[var(--surface-2)] border-2 border-[var(--accent)] shadow-xl shadow-[var(--accent)]/10'
-                    : 'bg-[var(--surface)] border border-[var(--border)]'
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-              >
-                {tier.highlighted && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[var(--accent)] text-[var(--accent-text)] font-mono text-[11px] tracking-[3px] uppercase rounded-sm flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3" />
-                    Popular
-                  </div>
-                )}
-
-                <div className="mb-8">
-                  <h3 className="font-display font-black uppercase text-2xl mb-2">{tier.tierName}</h3>
-                  <div className="flex items-baseline gap-1">
-                    {tier.price === 0 ? (
-                      <span className="font-display font-black text-4xl text-[var(--accent)]">Custom</span>
-                    ) : (
-                      <>
-                        <span className="font-display font-black text-4xl text-[var(--text)]">${tier.price}</span>
-                        <span className="font-body text-sm text-[var(--muted)]">/{tier.period}</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                <ul className="space-y-3 flex-1 mb-8">
-                  {tier.features?.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-[var(--accent)] mt-0.5 flex-shrink-0" />
-                      <span className="font-body text-sm text-[var(--text)]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/book"
-                  className={`w-full py-3 text-center font-body text-sm font-extrabold uppercase transition-all duration-300 rounded-md dark:rounded-none block ${
-                    tier.highlighted
-                      ? 'bg-[var(--accent)] text-[var(--accent-text)] hover:shadow-lg hover:shadow-[var(--accent)]/20'
-                      : 'border-2 border-[var(--border)] text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
+          {/* Billing Toggle */}
+          <div className="flex justify-center">
+            <div className="bg-[#0D0D0D] p-1 border border-[#1A1A1A] flex gap-1">
+              {(['monthly', '6month', 'yearly'] as const).map((period) => (
+                <button
+                  key={period}
+                  onClick={() => setBillingPeriod(period)}
+                  className={`px-6 py-2 font-display font-black uppercase text-xs tracking-widest transition-all duration-300 ${
+                    billingPeriod === period 
+                      ? 'bg-[var(--accent)] text-[#000000]' 
+                      : 'text-[var(--muted)] hover:text-[var(--text)]'
                   }`}
                 >
-                  {tier.ctaText}
-                </Link>
-              </motion.div>
-            ))}
+                  {period === '6month' ? '6 Months' : period}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-24 md:py-32 bg-[var(--surface)]" id="pricing-faq">
-        <div className="max-w-3xl mx-auto px-6 md:px-10 lg:px-16">
-          <h2 className="font-display font-black uppercase tracking-tight text-display-md text-center mb-16">
-            Frequently Asked Questions
-          </h2>
+      {/* Pricing Cards Grid */}
+      <section className="mb-32">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Starter Card */}
+            <motion.div 
+              className="bg-[#0D0D0D] border border-[#1A1A1A] neon-shadow p-8 flex flex-col rounded-[2rem]"
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            >
+              <span className="font-mono text-[10px] tracking-widest uppercase text-white/40 mb-6">STARTER</span>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="font-display font-black text-6xl text-white">$199</span>
+                <span className="font-body text-xs text-white/40">/ {periodLabel}</span>
+              </div>
+              <p className="font-body text-xs text-white/60 mb-8">Perfect for small brands testing AI photography.</p>
+              
+              <ul className="space-y-4 mb-10 flex-grow">
+                {['5 product images', '1 service type', '2 revisions', '3-day delivery'].map((f) => (
+                  <li key={f} className="flex items-center gap-3">
+                    <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
+                    <span className="font-body text-xs text-white/80">{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full py-4 border border-[#333] font-display font-black uppercase text-xs tracking-widest hover:bg-white hover:text-[#000] transition-all">
+                GET STARTED
+              </button>
+            </motion.div>
+
+            {/* Growth Card (Highlighted) */}
+            <motion.div 
+              className="bg-[var(--accent)] p-8 flex flex-col relative scale-105 z-10 shadow-2xl rounded-[2rem]"
+              initial={{ opacity: 0, scale: 1 }} whileInView={{ opacity: 1, scale: 1.05 }} viewport={{ once: true }}
+            >
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#000] text-[var(--accent)] px-4 py-1 font-display font-black text-[10px] tracking-widest uppercase">
+                MOST POPULAR
+              </div>
+              <span className="font-mono text-[10px] tracking-widest uppercase text-[#000] font-bold mb-6">GROWTH</span>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="font-display font-black text-6xl text-[#000]">$499</span>
+                <span className="font-body text-xs text-[#000]/70">/ {periodLabel}</span>
+              </div>
+              <p className="font-body text-xs text-[#000]/70 mb-8">For brands ready to scale their visual content.</p>
+              
+              <ul className="space-y-4 mb-10 flex-grow">
+                {['15 images', '3 service types', 'Unlimited revisions', 'Lifestyle + studio', '2-day delivery', 'Priority support'].map((f) => (
+                  <li key={f} className="flex items-center gap-3">
+                    <Check className="w-3.5 h-3.5 text-[#000]" />
+                    <span className="font-body text-xs text-[#000] font-medium">{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full py-4 bg-[#000] text-[var(--accent)] font-display font-black uppercase text-xs tracking-widest hover:scale-[0.98] transition-all">
+                BOOK A CALL
+              </button>
+            </motion.div>
+
+            {/* Enterprise Card */}
+            <motion.div 
+              className="bg-[#0D0D0D] border border-[#1A1A1A] neon-shadow p-8 flex flex-col rounded-[2rem]"
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <span className="font-mono text-[10px] tracking-widest uppercase text-white/40 mb-6">ENTERPRISE</span>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="font-display font-black text-6xl text-white">$999</span>
+                <span className="font-body text-xs text-white/40">/ {periodLabel}</span>
+              </div>
+              <p className="font-body text-xs text-white/60 mb-8">Custom solution for high-volume brands.</p>
+              
+              <ul className="space-y-4 mb-10 flex-grow">
+                {['Unlimited images', 'All services included', 'Dedicated manager', 'Custom timeline', 'Monthly retainer'].map((f) => (
+                  <li key={f} className="flex items-center gap-3">
+                    <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
+                    <span className="font-body text-xs text-white/80">{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full py-4 border border-[#333] font-display font-black uppercase text-xs tracking-widest hover:bg-white hover:text-[#000] transition-all">
+                CONTACT US
+              </button>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 border-t border-[#1A1A1A]">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="font-mono text-[10px] tracking-[4px] uppercase text-[var(--accent)] mb-4 block">FAQ</span>
+            <h2 className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-[var(--text)]">
+              Frequently Asked Questions
+            </h2>
+            <p className="font-body text-[var(--muted)] mt-4">Everything you need to know about working with WEBRING.</p>
+          </div>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                className="border border-[var(--border)] rounded-lg dark:rounded-none overflow-hidden"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
+              <div key={i} className="bg-[#0A0A0A] border border-[#1A1A1A] neon-shadow rounded-2xl overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--surface-2)] transition-colors"
+                  className="w-full flex items-center justify-between p-6 text-left"
                 >
-                  <span className="font-display font-black uppercase text-lg text-[var(--text)] pr-4">{faq.question}</span>
-                  <ChevronDown className={`w-5 h-5 text-[var(--muted)] flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
+                  <span className="font-display font-black uppercase text-sm md:text-base text-white pr-4">
+                    {faq.question}
+                  </span>
+                  {openFaq === i ? <Minus className="w-4 h-4 text-[var(--accent)]" /> : <Plus className="w-4 h-4 text-white/40" />}
                 </button>
                 <AnimatePresence>
                   {openFaq === i && (
@@ -141,20 +199,34 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6">
-                        <p className="font-body text-sm text-[var(--muted)] leading-relaxed">{faq.answer}</p>
+                      <div className="px-6 pb-6 pt-0 border-t border-[#1A1A1A]/50 mt-4 pt-4">
+                        <p className="font-body text-xs md:text-sm text-white/60 leading-relaxed">
+                          {faq.answer}
+                        </p>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Final CTA Banner */}
+      <section className="mt-20 bg-[var(--accent)] py-20 text-center">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <h2 className="font-display font-black uppercase text-5xl md:text-7xl text-[#000] mb-8">
+            Ready to get started?
+          </h2>
+          <button className="px-10 py-4 border-2 border-[#000] rounded-full font-display font-black uppercase text-sm hover:bg-[#000] hover:text-[var(--accent)] transition-all">
+            Book a Free Call
+          </button>
+        </div>
+      </section>
+
     </div>
   );
 }

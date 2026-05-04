@@ -22,6 +22,7 @@ import ProcessSection from '@/components/home/ProcessSection';
 import PortfolioPreview from '@/components/home/PortfolioPreview';
 import StatsSection from '@/components/home/StatsSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
+import AboutSection from '@/components/home/AboutSection';
 import CTABanner from '@/components/home/CTABanner';
 
 export const revalidate = 3600;
@@ -54,17 +55,14 @@ export default async function Home() {
   return (
     <>
       <HeroSection data={homePage} />
-      <MarqueeStrip text={homePage?.marqueeText || ''} />
       <TrustedBrands brands={siteSettings?.clientBrands || null} />
       <ServicesOverview services={services} />
       <ProcessSection />
       <PortfolioPreview items={featuredPortfolio} />
       <StatsSection stats={homePage?.stats || null} />
       <TestimonialsSection testimonials={testimonials} />
-      <CTABanner
-        heading={homePage?.ctaBannerHeading}
-        subtext={homePage?.ctaBannerSubtext}
-      />
+      <AboutSection />
+      <CTABanner />
     </>
   );
 }

@@ -285,7 +285,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                       <select
                         value={productCategory}
                         onChange={(e) => setProductCategory(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-accent transition-colors"
                       >
                         <option value="">Select category</option>
                         {productCategories.map((cat) => (
@@ -303,7 +303,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                           <button
                             key={range}
                             onClick={() => setBudget(range)}
-                            className={`px-4 py-3 rounded-lg border text-sm font-body transition-all ${
+                            className={`px-4 py-3 rounded-[2rem] border text-sm font-body transition-all ${
                               budget === range
                                 ? 'border-accent bg-accent/5 text-accent'
                                 : 'border-border text-muted hover:border-accent/40'
@@ -323,7 +323,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                         rows={4}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors resize-none"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors resize-none"
                         placeholder="Any specific requirements, reference links, or details..."
                       />
                     </div>
@@ -374,7 +374,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                           <button
                             key={slot}
                             onClick={() => setSelectedTime(slot)}
-                            className={`px-4 py-3 rounded-lg border text-sm font-body transition-all ${
+                            className={`px-4 py-3 rounded-[2rem] border text-sm font-body transition-all ${
                               selectedTime === slot
                                 ? 'border-accent bg-accent/5 text-accent'
                                 : 'border-border text-muted hover:border-accent/40'
@@ -406,7 +406,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                       <input
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                         placeholder="Your full name"
                       />
                     </div>
@@ -416,7 +416,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -425,7 +425,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                       <input
                         value={whatsapp}
                         onChange={(e) => setWhatsapp(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                         placeholder="+880..."
                       />
                     </div>
@@ -434,7 +434,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                       <input
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                         placeholder="Your company name"
                       />
                     </div>
@@ -443,7 +443,7 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                       <select
                         value={referral}
                         onChange={(e) => setReferral(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-accent transition-colors"
+                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:border-accent transition-colors"
                       >
                         <option value="">Select source</option>
                         {referralSources.map((src) => (

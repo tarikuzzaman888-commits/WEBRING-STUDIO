@@ -51,7 +51,7 @@ export default function TrustedBrands({ brands }: TrustedBrandsProps) {
             {Array.from({ length: 6 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-28 h-10 bg-[var(--surface)] rounded-md dark:rounded-none border border-[var(--border)] flex items-center justify-center"
+                className="w-28 h-10 bg-[var(--surface)] rounded-full rounded-[2rem] border border-[var(--border)] flex items-center justify-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

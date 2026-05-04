@@ -25,7 +25,7 @@ export default function PortfolioPageClient({ items }: PortfolioPageClientProps)
           {items.length > 0 ? (
             <PortfolioGrid items={items} />
           ) : (
-            <div className="text-center py-20 bg-[var(--surface)] rounded-lg dark:rounded-none border border-[var(--border)]">
+            <div className="text-center py-20 bg-[var(--surface)] rounded-[2rem] border border-[var(--border)]">
               <p className="font-display uppercase text-2xl text-[var(--text)] mb-4">Portfolio Coming Soon</p>
               <p className="font-body text-[var(--muted)]">Add portfolio items through Sanity Studio at <code className="font-mono text-[var(--accent)] text-sm">/studio</code></p>
             </div>

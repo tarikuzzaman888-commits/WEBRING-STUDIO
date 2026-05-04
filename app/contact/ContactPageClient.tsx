@@ -67,7 +67,7 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
                 { icon: <MapPin className="w-4 h-4 text-[var(--accent)]" />, title: 'Location', content: <span className="font-body text-[var(--muted)]">{siteSettings?.location || 'Bangladesh — Available Worldwide'}</span> },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-md dark:rounded-none bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0">{item.icon}</div>
+                  <div className="w-10 h-10 rounded-full rounded-[2rem] bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0">{item.icon}</div>
                   <div>
                     <h3 className="font-display font-black uppercase text-lg mb-1">{item.title}</h3>
                     {item.content}
@@ -81,7 +81,7 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
                   { href: siteSettings?.facebookUrl || '#', icon: <Facebook className="w-4 h-4" />, label: 'Facebook' },
                   { href: siteSettings?.linkedinUrl || '#', icon: <Linkedin className="w-4 h-4" />, label: 'LinkedIn' },
                 ].map((s) => (
-                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 rounded-md dark:rounded-none transition-all" aria-label={s.label}>{s.icon}</a>
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 rounded-full rounded-[2rem] transition-all" aria-label={s.label}>{s.icon}</a>
                 ))}
               </div>
             </div>
@@ -96,19 +96,19 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
                   ].map((f) => (
                     <div key={f.id}>
                       <label htmlFor={f.id} className="font-body text-sm text-[var(--text)] mb-2 block">{f.label}</label>
-                      <input id={f.id} type={f.type} {...register(f.reg)} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-md dark:rounded-none px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder={f.placeholder} />
+                      <input id={f.id} type={f.type} {...register(f.reg)} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder={f.placeholder} />
                       {errors[f.reg] && <p className="text-red-500 text-xs mt-1 font-body">{errors[f.reg]?.message}</p>}
                     </div>
                   ))}
                 </div>
                 <div>
                   <label htmlFor="contact-subject" className="font-body text-sm text-[var(--text)] mb-2 block">Subject *</label>
-                  <input id="contact-subject" {...register('subject')} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-md dark:rounded-none px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder="What is this about?" />
+                  <input id="contact-subject" {...register('subject')} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder="What is this about?" />
                   {errors.subject && <p className="text-red-500 text-xs mt-1 font-body">{errors.subject.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-service" className="font-body text-sm text-[var(--text)] mb-2 block">Service *</label>
-                  <select id="contact-service" {...register('service')} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-md dark:rounded-none px-4 py-3 font-body text-sm text-[var(--text)] focus:outline-none focus:border-[var(--accent)] transition-colors">
+                  <select id="contact-service" {...register('service')} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] focus:outline-none focus:border-[var(--accent)] transition-colors">
                     <option value="">Select a service</option>
                     <option value="AI Product Photography">AI Product Photography</option>
                     <option value="Lifestyle Photography">Lifestyle Photography</option>
@@ -121,10 +121,10 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
                 </div>
                 <div>
                   <label htmlFor="contact-message" className="font-body text-sm text-[var(--text)] mb-2 block">Message *</label>
-                  <textarea id="contact-message" {...register('message')} rows={5} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-md dark:rounded-none px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none" placeholder="Tell us about your project..." />
+                  <textarea id="contact-message" {...register('message')} rows={5} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none" placeholder="Tell us about your project..." />
                   {errors.message && <p className="text-red-500 text-xs mt-1 font-body">{errors.message.message}</p>}
                 </div>
-                <button type="submit" disabled={isSubmitting} id="contact-submit" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all disabled:opacity-50">
+                <button type="submit" disabled={isSubmitting} id="contact-submit" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all disabled:opacity-50">
                   {isSubmitting ? (<><div className="w-4 h-4 border-2 border-[var(--accent-text)] border-t-transparent rounded-full animate-spin" />Sending...</>) : (<><Send className="w-4 h-4" />Send Message</>)}
                 </button>
               </form>

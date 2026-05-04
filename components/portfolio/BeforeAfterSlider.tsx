@@ -30,7 +30,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
   return (
     <div
       ref={containerRef}
-      className="before-after-slider relative aspect-[16/9] rounded-lg dark:rounded-none overflow-hidden cursor-ew-resize"
+      className="before-after-slider relative aspect-[16/9] rounded-[2rem] overflow-hidden cursor-ew-resize"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}

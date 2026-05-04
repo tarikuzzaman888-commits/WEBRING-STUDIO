@@ -9,13 +9,13 @@ export default function MarqueeStrip({ text }: MarqueeStripProps) {
   const repeated = `${marqueeText} ${marqueeText} ${marqueeText} `;
 
   return (
-    <div className="bg-[#0D0D0D] dark:bg-[#CCFF00] py-4 overflow-hidden">
+    <div className="bg-[#0D0D0D] dark:bg-[var(--accent)] py-1 overflow-hidden">
       <div className="marquee-container">
         <div className="marquee-track">
-          <span className="font-display text-base md:text-lg font-bold uppercase tracking-widest text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
+          <span className="font-display text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
             {repeated}
           </span>
-          <span className="font-display text-base md:text-lg font-bold uppercase tracking-widest text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
+          <span className="font-display text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)] dark:text-[#000000] whitespace-nowrap px-4">
             {repeated}
           </span>
         </div>

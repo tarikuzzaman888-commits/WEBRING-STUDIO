@@ -37,10 +37,8 @@ export default function HeroSection({ data }: HeroSectionProps) {
   const line1Words = line1.split(' ');
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-x-hidden pt-8 md:pt-16">
-      <div className="grain-overlay" />
-
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-16 pb-12">
+    <section id="hero" className="relative h-screen min-h-[600px] flex items-center overflow-hidden pt-12 md:pt-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-12 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="lg:col-span-7">
@@ -58,7 +56,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
             </motion.div>
 
             {/* Giant Heading */}
-            <h1 className="font-display font-black uppercase tracking-tight text-[3.5rem] md:text-[5rem] lg:text-[6rem] leading-[0.95] mb-6">
+            <h1 className="font-display font-black uppercase tracking-tight text-[3.2rem] md:text-[4.5rem] lg:text-[5.5rem] leading-[0.9] mb-5">
               {allWords.map((word, i) => (
                 <motion.span
                   key={i}
@@ -93,14 +91,14 @@ export default function HeroSection({ data }: HeroSectionProps) {
               <Link
                 href="/portfolio"
                 id="hero-cta-work"
-                className="px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/30 transition-all duration-300"
+                className="px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] hover:shadow-lg hover:shadow-[var(--accent)]/30 transition-all duration-300"
               >
                 {cta1}
               </Link>
               <Link
                 href="/book"
                 id="hero-cta-book"
-                className="px-8 py-3.5 border-2 border-[var(--accent)] text-[var(--accent)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none bg-transparent hover:bg-[var(--accent)] hover:text-[var(--accent-text)] transition-all duration-300"
+                className="px-8 py-3.5 border-2 border-[var(--accent)] text-[var(--accent)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] bg-transparent hover:bg-[var(--accent)] hover:text-[var(--accent-text)] transition-all duration-300"
               >
                 {cta2}
               </Link>
@@ -134,7 +132,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 heroImages.slice(0, 6).map((img, i) => (
                   <motion.div
                     key={i}
-                    className={`relative overflow-hidden rounded-lg dark:rounded-none ${
+                    className={`relative overflow-hidden rounded-[2rem] ${
                       i % 3 === 0 ? 'aspect-[3/4]' : i % 3 === 1 ? 'aspect-square' : 'aspect-[4/5]'
                     }`}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -152,16 +150,14 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 ))
               ) : (
                 [
-                  { src: '/images/hero/watch.png', aspect: 'aspect-[3/4]' },
-                  { src: '/images/hero/perfume.png', aspect: 'aspect-square' },
-                  { src: '/images/hero/camera.png', aspect: 'aspect-[4/5]' },
-                  { src: '/images/hero/sneaker.png', aspect: 'aspect-[3/4]' },
-                  { src: '/images/hero/watch.png', aspect: 'aspect-square' },
+                  { src: '/images/hero/watch.png', aspect: 'aspect-[4/5]' },
                   { src: '/images/hero/perfume.png', aspect: 'aspect-[4/5]' },
+                  { src: '/images/hero/camera.png', aspect: 'aspect-[4/5]' },
+                  { src: '/images/hero/sneaker.png', aspect: 'aspect-[4/5]' },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className={`relative overflow-hidden rounded-lg dark:rounded-none bg-[var(--surface)] border border-[var(--border)] ${item.aspect}`}
+                    className={`relative overflow-hidden rounded-[2rem] bg-[var(--surface)] border border-[var(--border)] ${item.aspect}`}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}

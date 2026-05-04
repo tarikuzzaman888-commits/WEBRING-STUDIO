@@ -73,8 +73,6 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          {/* Global grain texture overlay */}
-          <div className="grain-overlay-global" />
           <Navbar siteSettings={siteSettings} />
           <main className="min-h-screen">{children}</main>
           <Footer siteSettings={siteSettings} />

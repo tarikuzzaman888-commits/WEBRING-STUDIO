@@ -84,19 +84,6 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
         </div>
       </section>
 
-      {/* Tools Marquee */}
-      <section className="bg-[#0D0D0D] dark:bg-[#CCFF00] py-4 overflow-hidden">
-        <div className="marquee-container">
-          <div className="marquee-track">
-            <span className="font-mono text-lg md:text-xl font-bold uppercase text-[var(--accent)] dark:text-[#000000] whitespace-nowrap tracking-widest">
-              {repeated}
-            </span>
-            <span className="font-mono text-lg md:text-xl font-bold uppercase text-[var(--accent)] dark:text-[#000000] whitespace-nowrap tracking-widest">
-              {repeated}
-            </span>
-          </div>
-        </div>
-      </section>
 
       {/* Team */}
       <section className="py-24 md:py-32" id="team-section">
@@ -118,7 +105,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                 transition={{ delay: i * 0.1, duration: 0.4 }}
               >
                 {/* Photo */}
-                <div className="relative aspect-[3/4] rounded-lg dark:rounded-none overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-6">
+                <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-6">
                   {member.photo?.asset ? (
                     <Image
                       src={urlFor(member.photo).width(500).height(667).url()}
@@ -139,7 +126,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-1">
                     {member.name}
                   </h3>
-                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-md dark:rounded-none mb-3">
+                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-full rounded-[2rem] mb-3">
                     {member.role}
                   </span>
 
@@ -162,14 +149,14 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   <div className="flex gap-3">
                     {member.instagramUrl && (
                       <a href={member.instagramUrl} target="_blank" rel="noopener noreferrer"
-                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-md dark:rounded-none transition-colors"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full rounded-[2rem] transition-colors"
                         aria-label={`${member.name} Instagram`}>
                         <Instagram className="w-3.5 h-3.5" />
                       </a>
                     )}
                     {member.linkedinUrl && (
                       <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer"
-                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-md dark:rounded-none transition-colors"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full rounded-[2rem] transition-colors"
                         aria-label={`${member.name} LinkedIn`}>
                         <Linkedin className="w-3.5 h-3.5" />
                       </a>

@@ -83,7 +83,7 @@ export default async function PortfolioDetailPage({
       {/* Hero Image */}
       <section className="py-8">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="relative aspect-[16/9] rounded-lg dark:rounded-none overflow-hidden bg-[var(--surface)]">
+          <div className="relative aspect-[16/9] rounded-[2rem] overflow-hidden bg-[var(--surface)]">
             <Image
               src={urlFor(item.mainImage).width(1400).height(788).url()}
               alt={item.title}
@@ -127,7 +127,7 @@ export default async function PortfolioDetailPage({
                   <h3 className="font-mono text-[11px] tracking-[3px] uppercase text-[var(--muted)] mb-2">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
-                      <span key={tag} className="inline-flex items-center gap-1 font-mono text-xs bg-[var(--surface)] border border-[var(--border)] px-3 py-1 rounded-md dark:rounded-none">
+                      <span key={tag} className="inline-flex items-center gap-1 font-mono text-xs bg-[var(--surface)] border border-[var(--border)] px-3 py-1 rounded-full rounded-[2rem]">
                         <Tag className="w-3 h-3" />
                         {tag}
                       </span>
@@ -163,7 +163,7 @@ export default async function PortfolioDetailPage({
                 <Link
                   key={r._id}
                   href={`/portfolio/${r.slug.current}`}
-                  className="group relative aspect-[3/4] rounded-lg dark:rounded-none overflow-hidden"
+                  className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden"
                 >
                   <Image
                     src={urlFor(r.mainImage).width(500).height(667).url()}
@@ -197,7 +197,7 @@ export default async function PortfolioDetailPage({
           </p>
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-md dark:rounded-none hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] text-[var(--accent-text)] font-body text-sm font-extrabold uppercase rounded-full rounded-[2rem] hover:shadow-lg hover:shadow-[var(--accent)]/20 transition-all"
           >
             Book a Free Call
           </Link>
