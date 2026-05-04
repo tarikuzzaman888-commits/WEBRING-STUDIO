@@ -1,27 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════ */
+/* THEME: CSS VARIABLES                   */
+/* ═══════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Light Mode (default) — Premium Cream/Gold */
+  --background: #FAFAF8;
+  --surface: #F2F0EC;
+  --foreground: #0D0D0D;
+  --muted: #6B6B6B;
+  --accent: #C8A96E;
+  --accent-hover: #B8953A;
+  --border-color: #E5E2DC;
+  --overlay: rgba(250, 250, 248, 0.85);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  /* Dark Mode — XOT Studio Grungy Editorial */
+  --background: #0A0A0A;
+  --surface: #111111;
+  --foreground: #F5F5F5;
+  --muted: #888888;
+  --accent: #C8A96E;
+  --accent-hover: #D4B87A;
+  --border-color: #2A2A2A;
+  --overlay: rgba(10, 10, 10, 0.85);
+}
+
+/* ═══════════════════════════════════════ */
+/* BASE STYLES                            */
+/* ═══════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  font-family: var(--font-body);
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+::selection {
+  background-color: var(--accent);
+  color: #0A0A0A;
+}
+
+/* ═══════════════════════════════════════ */
+/* SCROLLBAR                              */
+/* ═══════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════ */
+/* TYPOGRAPHY                             */
+/* ═══════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════ */
+/* GRAIN TEXTURE OVERLAY                  */
+/* ═══════════════════════════════════════ */
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .grain-overlay {
+  opacity: 0.05;
+}
+
+/* ═══════════════════════════════════════ */
+/* MARQUEE                                */
+/* ═══════════════════════════════════════ */
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track-reverse {
+  display: inline-flex;
+  animation: marquee-reverse 30s linear infinite;
+}
+
+.marquee-track:hover,
+.marquee-track-reverse:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Custom cursor removed — using system default */
+
+/* ═══════════════════════════════════════ */
+/* BEFORE/AFTER SLIDER                    */
+/* ═══════════════════════════════════════ */
+
+.before-after-slider {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+.before-after-slider .before-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.before-after-slider .slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.before-after-slider .slider-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════ */
+/* DAY PICKER OVERRIDES                   */
+/* ═══════════════════════════════════════ */
+
+.rdp {
+  --rdp-cell-size: 44px;
+  --rdp-accent-color: var(--accent);
+  --rdp-background-color: var(--surface);
+}
+
+.rdp-day_selected {
+  background-color: var(--accent) !important;
+  color: #0A0A0A !important;
+}
+
+.rdp-day_today {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.rdp-button:hover:not([disabled]) {
+  background-color: var(--surface);
+}
+
+/* ═══════════════════════════════════════ */
+/* LOADING SCREEN                         */
+/* ═══════════════════════════════════════ */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0A0A0A;
+}
+
+/* ═══════════════════════════════════════ */
+/* UTILITY CLASSES                        */
+/* ═══════════════════════════════════════ */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #E8D5A3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient {
+  border-image: linear-gradient(135deg, var(--accent) 0%, transparent 100%) 1;
+}
+
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ═══════════════════════════════════════ */
+/* SANITY STUDIO OVERRIDES                */
+/* ═══════════════════════════════════════ */
+
+#sanity-studio {
+  height: 100vh;
 }
