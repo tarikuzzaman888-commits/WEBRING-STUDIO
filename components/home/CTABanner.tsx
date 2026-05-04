@@ -17,11 +17,11 @@ export default function CTABanner() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[#000000] font-bold">// LET'S WORK TOGETHER</span>
+              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent-text)] font-bold">{'// LET\'S WORK TOGETHER'}</span>
             </motion.div>
             
             <motion.h2 
-              className="font-display font-black uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-[#000000] mb-8"
+              className="font-display font-black uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-[var(--accent-text)] mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -30,13 +30,13 @@ export default function CTABanner() {
             </motion.h2>
 
             <motion.p 
-              className="font-body text-[#000000]/70 text-lg md:text-xl max-w-2xl"
+              className="font-body text-[var(--accent-text)]/70 text-lg md:text-xl max-w-2xl"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Book a free 30-minute strategy call. We'll discuss your brand, your goals, and how we can help.
+              Book a free 30-minute strategy call. We&apos;ll discuss your brand, your goals, and how we can help.
             </motion.p>
           </div>
 
@@ -48,7 +48,7 @@ export default function CTABanner() {
           >
             <Link
               href="/book"
-              className="group flex items-center justify-center gap-3 px-8 py-4 border-2 border-[#000000] text-[#000000] rounded-full font-display font-black uppercase text-lg hover:bg-[#000000] hover:text-[var(--accent)] transition-all duration-300"
+              className="group flex items-center justify-center gap-3 px-8 py-4 border-2 border-[var(--accent-text)] text-[var(--accent-text)] rounded-full font-display font-black uppercase text-lg hover:bg-[var(--accent-text)] hover:text-[var(--accent)] transition-all duration-300"
             >
               Book a Call
               <MoveUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

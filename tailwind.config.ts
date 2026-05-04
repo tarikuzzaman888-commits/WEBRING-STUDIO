@@ -20,10 +20,10 @@ const config: Config = {
         border: 'var(--border)',
       },
       fontFamily: {
-        display: ['Barlow Condensed', 'sans-serif'],
-        serif: ['Cormorant Garamond', 'serif'],
-        body: ['DM Sans', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        display: ['var(--font-display)', 'sans-serif'],
+        condensed: ['var(--font-display)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       fontSize: {
         'display-xl': ['clamp(3rem, 8vw, 6.5rem)', { lineHeight: '1.05' }],

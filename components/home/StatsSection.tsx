@@ -3,10 +3,9 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
-import SectionHeading from '@/components/shared/SectionHeading';
-import type { Stat } from '@/lib/types';
+import type { StatItem } from '@/lib/types';
 
-const fallbackStats: Stat[] = [
+const fallbackStats: StatItem[] = [
   { _key: '1', value: 199, suffix: '+', label: 'Brands Served' },
   { _key: '2', value: 4999, suffix: '+', label: 'Images Delivered' },
   { _key: '3', value: 15, suffix: '', label: 'Countries' },
@@ -14,7 +13,7 @@ const fallbackStats: Stat[] = [
 ];
 
 interface StatsSectionProps {
-  stats: Stat[] | null;
+  stats: StatItem[] | null;
 }
 
 export default function StatsSection({ stats }: StatsSectionProps) {

@@ -31,7 +31,7 @@ export default function ServicesPageClient({ services }: ServicesPageClientProps
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            // Our Services
+            {'// Our Services'}
           </motion.span>
           <motion.h1
             className="font-display font-black uppercase tracking-tight text-display-xl mb-6"

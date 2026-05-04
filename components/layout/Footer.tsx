@@ -1,10 +1,18 @@
 'use client';
 
 import Link from 'next/link';
+import type { SiteSettings } from '@/lib/types';
 
-export default function Footer() {
+interface FooterProps {
+  siteSettings: SiteSettings | null;
+}
+
+export default function Footer({ siteSettings }: FooterProps) {
+  const email = siteSettings?.email || 'hello@webring.studio';
+  const location = siteSettings?.location || 'Khulna, Bangladesh';
+
   return (
-    <footer className="bg-[#000000] py-12 border-t border-[#1A1A1A]" id="site-footer">
+    <footer className="bg-[var(--surface)] dark:bg-[#0D0D0D] py-12 border-t border-[var(--border)]" id="site-footer">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           
@@ -16,20 +24,20 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 text-center md:text-right">
             <a 
-              href="mailto:hello@webring.studio" 
+              href={`mailto:${email}`} 
               className="font-body text-xs md:text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             >
-              hello@webring.studio
+              {email}
             </a>
             <span className="font-body text-xs md:text-sm text-[var(--muted)]">
-              +880-XXXXXXXXXX
+              {location}
             </span>
           </div>
 
         </div>
         
-        {/* Bottom copyright (optional, but keep it minimal) */}
-        <div className="mt-8 pt-8 border-t border-[#1A1A1A] flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Bottom copyright */}
+        <div className="mt-8 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-mono text-[10px] text-[var(--muted)]/30 tracking-widest uppercase">
             © {new Date().getFullYear()} WEBRING STUDIO. ALL RIGHTS RESERVED.
           </p>

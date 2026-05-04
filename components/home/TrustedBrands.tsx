@@ -21,7 +21,7 @@ export default function TrustedBrands({ brands }: TrustedBrandsProps) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          // Trusted By
+          {'// Trusted By'}
         </motion.p>
 
         {hasBrands ? (

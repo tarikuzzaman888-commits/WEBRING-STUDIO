@@ -63,6 +63,14 @@ export default function PortfolioGrid({ items }: PortfolioGridProps) {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
+                  ) : item.fallbackUrl ? (
+                    <Image
+                      src={item.fallbackUrl}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   ) : (
                     <div className="absolute inset-0 bg-[var(--surface)] flex items-center justify-center">
                       <span className="font-mono text-xs text-[var(--muted)]">No Image</span>

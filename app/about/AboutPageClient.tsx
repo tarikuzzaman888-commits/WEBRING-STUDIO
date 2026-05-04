@@ -7,18 +7,13 @@ import SectionHeading from '@/components/shared/SectionHeading';
 import { urlFor } from '@/sanity/lib/image';
 import type { TeamMember } from '@/lib/types';
 
-const tools = [
-  'Photoshop', 'Midjourney', 'Gemini AI', 'Firefly',
-  'After Effects', 'Figma', 'ComfyUI', 'Lightroom',
-];
 
 interface AboutPageClientProps {
   team: TeamMember[];
 }
 
 export default function AboutPageClient({ team }: AboutPageClientProps) {
-  const marqueeText = tools.map(t => `${t} ✦`).join(' ');
-  const repeated = `${marqueeText} ${marqueeText} ${marqueeText} `;
+
 
   return (
     <div className="pt-20">
@@ -31,7 +26,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            // About Us
+            {'// About Us'}
           </motion.span>
           <motion.h1
             className="font-display font-black uppercase tracking-tight text-display-xl mb-8"
@@ -95,7 +90,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, i) => (
+            {team.length > 0 ? team.map((member, i) => (
               <motion.div
                 key={member._id}
                 className="group"
@@ -164,7 +159,39 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )) : (
+              /* Fallback: hardcoded team member from Upwork profile */
+              <motion.div
+                className="group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-6 flex items-center justify-center">
+                  <User className="w-16 h-16 text-[var(--muted)]/20" />
+                </div>
+                <div>
+                  <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-1">Sheikh Mariful I.</h3>
+                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-full mb-3">
+                    AI Image Generation Expert
+                  </span>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {['AI Photography', 'Adobe Photoshop', 'Midjourney AI', 'Meta Ad Creatives', 'eCommerce Visuals', 'Figma'].map((r) => (
+                      <span key={r} className="font-body text-xs text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-sm">
+                        {r}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="font-body text-sm text-[var(--muted)] leading-relaxed mb-2">
+                    AI image manipulation expert with 100% Job Success on Upwork. 3+ years delivering high-converting product visuals, lifestyle mockups, and ad creatives for global e-commerce brands. Based in Khulna, Bangladesh.
+                  </p>
+                  <div className="flex items-center gap-2 mt-3">
+                    <span className="font-mono text-[10px] text-[var(--accent)] border border-[var(--accent)]/30 px-2 py-0.5 rounded-sm">⭐ 100% Job Success</span>
+                    <span className="font-mono text-[10px] text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-sm">🏆 Top Rated</span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>

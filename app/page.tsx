@@ -15,7 +15,6 @@ import type {
 } from '@/lib/types';
 
 import HeroSection from '@/components/home/HeroSection';
-import MarqueeStrip from '@/components/home/MarqueeStrip';
 import TrustedBrands from '@/components/home/TrustedBrands';
 import ServicesOverview from '@/components/home/ServicesOverview';
 import ProcessSection from '@/components/home/ProcessSection';

@@ -20,13 +20,13 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="loading-screen"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--bg)]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
         >
           <motion.h1
-            className="font-display text-[clamp(3rem,10vw,8rem)] text-[#C8A96E] tracking-tight"
+            className="font-display text-[clamp(3rem,10vw,8rem)] text-[var(--accent)] tracking-tight"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -39,7 +39,7 @@ export default function LoadingScreen() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <div className="w-8 h-8 border-2 border-[#C8A96E] border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
           </motion.div>
         </motion.div>
       )}

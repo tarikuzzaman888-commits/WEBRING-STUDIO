@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,8 +9,6 @@ import { Menu, X } from 'lucide-react';
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import BrandLogo from '@/components/shared/BrandLogo';
 import { cn, getGMT6Time } from '@/lib/utils';
-import { urlFor } from '@/sanity/lib/image';
-import type { SiteSettings } from '@/lib/types';
 import MarqueeStrip from '@/components/home/MarqueeStrip';
 
 const navLinks = [
@@ -23,11 +20,7 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-interface NavbarProps {
-  siteSettings: SiteSettings | null;
-}
-
-export default function Navbar({ siteSettings }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -71,10 +64,6 @@ export default function Navbar({ siteSettings }: NavbarProps) {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const showLogo = mounted && siteSettings;
-  const logoSrc = resolvedTheme === 'dark'
-    ? siteSettings?.logoDark || siteSettings?.logo
-    : siteSettings?.logo;
 
   return (
     <>

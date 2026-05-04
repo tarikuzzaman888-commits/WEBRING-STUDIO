@@ -58,6 +58,7 @@ export interface PortfolioItem {
   tags?: string[];
   featured: boolean;
   order: number;
+  fallbackUrl?: string;
 }
 
 export interface TeamMember {

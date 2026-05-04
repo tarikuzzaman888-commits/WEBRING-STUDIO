@@ -91,7 +91,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">// WHAT WE DO</span>
+              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">{'// WHAT WE DO'}</span>
             </motion.div>
             <motion.h2 
               className="font-display font-black uppercase text-5xl md:text-6xl lg:text-7xl leading-none text-[var(--text)]"
@@ -118,7 +118,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
           {items.map((service, i) => (
             <motion.div
               key={service.id}
-              className={`group flex flex-col bg-[#0D0D0D] border ${service.highlight ? 'border-[var(--accent)]' : 'border-[#1A1A1A]'} rounded-[2rem] overflow-hidden transition-all duration-300 hover:border-[var(--accent)]/50`}
+              className={`group flex flex-col bg-[var(--surface)] dark:bg-[#0D0D0D] border ${service.highlight ? 'border-[var(--accent)]' : 'border-[var(--border)]'} rounded-[2rem] overflow-hidden transition-all duration-300 hover:border-[var(--accent)]/50`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -140,11 +140,11 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                   {service.id}
                 </span>
                 
-                <h3 className="font-display font-black uppercase text-2xl text-white mb-4 leading-tight">
+                <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-4 leading-tight">
                   {service.title}
                 </h3>
                 
-                <p className="font-body text-xs text-white/60 leading-relaxed mb-8">
+                <p className="font-body text-xs text-[var(--muted)] leading-relaxed mb-8">
                   {service.description}
                 </p>
 
@@ -153,7 +153,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <Check className="w-3.5 h-3.5 text-[var(--accent)] mt-0.5 shrink-0" />
-                      <span className="font-body text-[11px] text-white/80 leading-tight">{feature}</span>
+                      <span className="font-body text-[11px] text-[var(--text)]/80 leading-tight">{feature}</span>
                     </li>
                   ))}
                 </ul>

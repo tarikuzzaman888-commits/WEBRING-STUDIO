@@ -45,7 +45,7 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="grain-overlay" />
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <motion.span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>// Contact</motion.span>
+          <motion.span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>{'// Contact'}</motion.span>
           <motion.h1 className="font-display font-black uppercase tracking-tight text-display-xl mb-6" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             Let&#39;s talk.
           </motion.h1>

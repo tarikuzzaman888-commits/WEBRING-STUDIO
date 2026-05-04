@@ -6,7 +6,7 @@ import { Check, Plus, Minus } from 'lucide-react';
 import type { PricingTier } from '@/lib/types';
 
 interface PricingPageClientProps {
-  tiers: PricingTier[];
+  tiers?: PricingTier[];
 }
 
 const faqs = [
@@ -18,16 +18,11 @@ const faqs = [
   { question: 'Do you offer refunds?', answer: 'We strive for 100% satisfaction. If we cannot meet your requirements after the revision rounds, we offer a fair refund policy based on the project stage.' },
 ];
 
-export default function PricingPageClient({ tiers }: PricingPageClientProps) {
+export default function PricingPageClient({  }: PricingPageClientProps) {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | '6month' | 'yearly'>('monthly');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Billing period multiplier/logic
-  const getDisplayPrice = (basePrice: number) => {
-    if (billingPeriod === '6month') return Math.round(basePrice * 0.9); // 10% off
-    if (billingPeriod === 'yearly') return Math.round(basePrice * 0.8); // 20% off
-    return basePrice;
-  };
+
 
   const periodLabel = billingPeriod === 'monthly' ? 'per month' : billingPeriod === '6month' ? 'per project' : 'per year';
 
@@ -41,7 +36,7 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
             className="flex justify-center items-center gap-3 mb-6"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           >
-            <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">// INVESTMENT</span>
+            <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">{'// INVESTMENT'}</span>
           </motion.div>
           
           <motion.h1 
@@ -55,12 +50,12 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
             className="font-body text-[var(--muted)] text-lg md:text-xl max-w-2xl mx-auto mb-12"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
           >
-            No hidden fees. Just world-class visual engineering tailored to your brand's scale.
+            No hidden fees. Just world-class visual engineering tailored to your brand&apos;s scale.
           </motion.p>
 
           {/* Billing Toggle */}
           <div className="flex justify-center">
-            <div className="bg-[#0D0D0D] p-1 border border-[#1A1A1A] flex gap-1">
+            <div className="bg-[var(--surface)] dark:bg-[#0D0D0D] p-1 border border-[var(--border)] flex gap-1">
               {(['monthly', '6month', 'yearly'] as const).map((period) => (
                 <button
                   key={period}
@@ -86,21 +81,21 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
             
             {/* Starter Card */}
             <motion.div 
-              className="bg-[#0D0D0D] border border-[#1A1A1A] neon-shadow p-8 flex flex-col rounded-[2rem]"
+              className="bg-[var(--surface)] dark:bg-[#0D0D0D] border border-[var(--border)] neon-shadow p-8 flex flex-col rounded-[2rem]"
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             >
-              <span className="font-mono text-[10px] tracking-widest uppercase text-white/40 mb-6">STARTER</span>
+              <span className="font-mono text-[10px] tracking-widest uppercase text-[var(--text)]/40 mb-6">STARTER</span>
               <div className="flex items-baseline gap-2 mb-2">
-                <span className="font-display font-black text-6xl text-white">$199</span>
-                <span className="font-body text-xs text-white/40">/ {periodLabel}</span>
+                <span className="font-display font-black text-6xl text-[var(--text)]">$199</span>
+                <span className="font-body text-xs text-[var(--text)]/40">/ {periodLabel}</span>
               </div>
-              <p className="font-body text-xs text-white/60 mb-8">Perfect for small brands testing AI photography.</p>
+              <p className="font-body text-xs text-[var(--text)]/60 mb-8">Perfect for small brands testing AI photography.</p>
               
               <ul className="space-y-4 mb-10 flex-grow">
                 {['5 product images', '1 service type', '2 revisions', '3-day delivery'].map((f) => (
                   <li key={f} className="flex items-center gap-3">
                     <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
-                    <span className="font-body text-xs text-white/80">{f}</span>
+                    <span className="font-body text-xs text-[var(--text)]/80">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -141,22 +136,22 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
 
             {/* Enterprise Card */}
             <motion.div 
-              className="bg-[#0D0D0D] border border-[#1A1A1A] neon-shadow p-8 flex flex-col rounded-[2rem]"
+              className="bg-[var(--surface)] dark:bg-[#0D0D0D] border border-[var(--border)] neon-shadow p-8 flex flex-col rounded-[2rem]"
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <span className="font-mono text-[10px] tracking-widest uppercase text-white/40 mb-6">ENTERPRISE</span>
+              <span className="font-mono text-[10px] tracking-widest uppercase text-[var(--text)]/40 mb-6">ENTERPRISE</span>
               <div className="flex items-baseline gap-2 mb-2">
-                <span className="font-display font-black text-6xl text-white">$999</span>
-                <span className="font-body text-xs text-white/40">/ {periodLabel}</span>
+                <span className="font-display font-black text-6xl text-[var(--text)]">$999</span>
+                <span className="font-body text-xs text-[var(--text)]/40">/ {periodLabel}</span>
               </div>
-              <p className="font-body text-xs text-white/60 mb-8">Custom solution for high-volume brands.</p>
+              <p className="font-body text-xs text-[var(--text)]/60 mb-8">Custom solution for high-volume brands.</p>
               
               <ul className="space-y-4 mb-10 flex-grow">
                 {['Unlimited images', 'All services included', 'Dedicated manager', 'Custom timeline', 'Monthly retainer'].map((f) => (
                   <li key={f} className="flex items-center gap-3">
                     <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
-                    <span className="font-body text-xs text-white/80">{f}</span>
+                    <span className="font-body text-xs text-[var(--text)]/80">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -171,7 +166,7 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 border-t border-[#1A1A1A]">
+      <section className="py-24 border-t border-[var(--border)]">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="font-mono text-[10px] tracking-[4px] uppercase text-[var(--accent)] mb-4 block">FAQ</span>
@@ -183,15 +178,15 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-[#0A0A0A] border border-[#1A1A1A] neon-shadow rounded-2xl overflow-hidden">
+              <div key={i} className="bg-[var(--surface)] dark:bg-[#0A0A0A] border border-[var(--border)] neon-shadow rounded-[2rem] overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-6 text-left"
                 >
-                  <span className="font-display font-black uppercase text-sm md:text-base text-white pr-4">
+                  <span className="font-display font-black uppercase text-sm md:text-base text-[var(--text)] pr-4">
                     {faq.question}
                   </span>
-                  {openFaq === i ? <Minus className="w-4 h-4 text-[var(--accent)]" /> : <Plus className="w-4 h-4 text-white/40" />}
+                  {openFaq === i ? <Minus className="w-4 h-4 text-[var(--accent)]" /> : <Plus className="w-4 h-4 text-[var(--text)]/40" />}
                 </button>
                 <AnimatePresence>
                   {openFaq === i && (
@@ -202,7 +197,7 @@ export default function PricingPageClient({ tiers }: PricingPageClientProps) {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 pt-0 border-t border-[#1A1A1A]/50 mt-4 pt-4">
-                        <p className="font-body text-xs md:text-sm text-white/60 leading-relaxed">
+                        <p className="font-body text-xs md:text-sm text-[var(--text)]/60 leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
