@@ -33,6 +33,7 @@ export default function Navbar({ siteSettings }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [clock, setClock] = useState('');
+  const [utcClock, setUtcClock] = useState('');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -43,8 +44,21 @@ export default function Navbar({ siteSettings }: NavbarProps) {
   }, []);
 
   useEffect(() => {
-    setClock(getGMT6Time());
-    const interval = setInterval(() => setClock(getGMT6Time()), 1000);
+    const updateClocks = () => {
+      setClock(getGMT6Time());
+      const now = new Date();
+      const utcStr = now.toLocaleTimeString('en-US', { 
+        timeZone: 'UTC', 
+        hour12: true, 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+      });
+      setUtcClock(utcStr);
+    };
+
+    updateClocks();
+    const interval = setInterval(updateClocks, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -107,11 +121,16 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               ))}
             </div>
 
-            {/* Right Section */}
             <div className="hidden lg:flex items-center gap-4">
-              {/* Live Clock GMT+6 */}
-              <div className="font-mono text-xs text-[var(--muted)] tracking-wider" id="nav-clock">
-                {clock} <span className="text-[var(--accent)]">GMT+6</span>
+              {/* Live Clocks */}
+              <div className="flex items-center gap-3 font-mono text-[10px] text-[var(--muted)] tracking-wider">
+                <div className="flex items-center gap-1.5" id="nav-utc">
+                  <span className="text-[var(--accent)] font-bold">UTC</span> {utcClock}
+                </div>
+                <div className="w-px h-3 bg-[var(--border)]" />
+                <div className="flex items-center gap-1.5" id="nav-clock">
+                  <span className="text-[var(--accent)] font-bold">GMT+6</span> {clock}
+                </div>
               </div>
 
               <ThemeToggle />
@@ -183,9 +202,10 @@ export default function Navbar({ siteSettings }: NavbarProps) {
               >
                 <div className="flex items-center gap-4">
                   <ThemeToggle />
-                  <span className="font-mono text-xs text-[var(--muted)]">
-                    {clock} GMT+6
-                  </span>
+                <div className="flex flex-col items-center gap-1 font-mono text-[10px] text-[var(--muted)]">
+                  <span>UTC {utcClock}</span>
+                  <span className="text-[var(--accent)] font-bold">GMT+6 {clock}</span>
+                </div>
                 </div>
                 <Link
                   href="/book"

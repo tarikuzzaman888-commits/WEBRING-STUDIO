@@ -20,8 +20,8 @@ const config: Config = {
         border: 'var(--border)',
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'serif'],
-        condensed: ['Barlow Condensed', 'sans-serif'],
+        display: ['Barlow Condensed', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
         body: ['DM Sans', 'sans-serif'],
         mono: ['Space Mono', 'monospace'],
       },

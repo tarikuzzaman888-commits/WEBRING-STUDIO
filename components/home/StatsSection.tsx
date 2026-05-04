@@ -7,8 +7,8 @@ import SectionHeading from '@/components/shared/SectionHeading';
 import type { Stat } from '@/lib/types';
 
 const fallbackStats: Stat[] = [
-  { _key: '1', value: 200, suffix: '+', label: 'Brands Served' },
-  { _key: '2', value: 5000, suffix: '+', label: 'Images Delivered' },
+  { _key: '1', value: 199, suffix: '+', label: 'Brands Served' },
+  { _key: '2', value: 4999, suffix: '+', label: 'Images Delivered' },
   { _key: '3', value: 15, suffix: '', label: 'Countries' },
   { _key: '4', value: 98, suffix: '%', label: 'Satisfaction Rate' },
 ];
@@ -44,7 +44,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
             >
-              <div className="font-display font-black text-display-lg text-[var(--text)]">
+              <div className="font-body font-black text-display-lg text-[var(--text)]">
                 {inView ? (
                   <CountUp end={stat.value} duration={2.5} separator="," />
                 ) : (
