@@ -1,4 +1,4 @@
-import type { PortfolioItem } from './types';
+import type { PortfolioItem, TeamMember } from './types';
 
 export const fallbackPortfolio: PortfolioItem[] = [
   {
@@ -60,5 +60,38 @@ export const fallbackPortfolio: PortfolioItem[] = [
     mainImage: undefined!,
     featured: false,
     order: 6,
+  }
+];
+
+export const fallbackTeam: TeamMember[] = [
+  {
+    _id: 't1',
+    name: 'Sheikh Mariful I.',
+    role: 'AI Image Generation Expert',
+    bio: 'AI image manipulation expert with 100% Job Success on Upwork. 3+ years delivering high-converting product visuals, lifestyle mockups, and ad creatives for global e-commerce brands.',
+    responsibilities: ['AI Photography', 'Adobe Photoshop', 'Midjourney AI', 'Meta Ad Creatives'],
+    fallbackUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop', // Mari Placeholder
+    photo: undefined,
+    order: 1,
+  },
+  {
+    _id: 't2',
+    name: 'Tarikuzzaman Sabbir',
+    role: 'Visual Engineer & Founder',
+    bio: 'Creative visionary obsessed with blending human artistry and AI. Leading the strategy and visual engineering to help brands scale their digital presence.',
+    responsibilities: ['Brand Strategy', 'Visual Direction', 'Figma', 'UI/UX Design'],
+    fallbackUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop', // Sabbir Placeholder
+    photo: undefined,
+    order: 2,
+  },
+  {
+    _id: 't3',
+    name: 'Sarah Chen',
+    role: 'Project Manager',
+    bio: 'Ensuring seamless delivery and communication. Keeping every project on track, on time, and above expectations for our global clients.',
+    responsibilities: ['Client Relations', 'Timeline Management', 'Quality Assurance'],
+    fallbackUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop', // Manager Placeholder
+    photo: undefined,
+    order: 3,
   }
 ];

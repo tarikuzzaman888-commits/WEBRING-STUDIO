@@ -70,6 +70,7 @@ export interface TeamMember {
   photo?: SanityImage;
   instagramUrl?: string;
   linkedinUrl?: string;
+  fallbackUrl?: string;
   order: number;
 }
 

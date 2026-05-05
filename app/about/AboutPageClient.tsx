@@ -6,6 +6,7 @@ import { Instagram, Linkedin, User } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { urlFor } from '@/sanity/lib/image';
 import type { TeamMember } from '@/lib/types';
+import { fallbackTeam } from '@/lib/fallbackData';
 
 
 interface AboutPageClientProps {
@@ -90,7 +91,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.length > 0 ? team.map((member, i) => (
+            {(team && team.length > 0 ? team : fallbackTeam).map((member, i) => (
               <motion.div
                 key={member._id}
                 className="group"
@@ -109,6 +110,14 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                       className="object-cover group-hover:scale-105 transition-transform duration-700 dark:grayscale-[20%] dark:group-hover:grayscale-0"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
+                  ) : member.fallbackUrl ? (
+                    <Image
+                      src={member.fallbackUrl}
+                      alt={member.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 dark:grayscale-[20%] dark:group-hover:grayscale-0"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <User className="w-16 h-16 text-[var(--muted)]/20" />
@@ -121,7 +130,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-1">
                     {member.name}
                   </h3>
-                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-full rounded-[2rem] mb-3">
+                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-full mb-3">
                     {member.role}
                   </span>
 
@@ -144,14 +153,14 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   <div className="flex gap-3">
                     {member.instagramUrl && (
                       <a href={member.instagramUrl} target="_blank" rel="noopener noreferrer"
-                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full rounded-[2rem] transition-colors"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full transition-colors"
                         aria-label={`${member.name} Instagram`}>
                         <Instagram className="w-3.5 h-3.5" />
                       </a>
                     )}
                     {member.linkedinUrl && (
                       <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer"
-                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full rounded-[2rem] transition-colors"
+                        className="w-8 h-8 border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] rounded-full transition-colors"
                         aria-label={`${member.name} LinkedIn`}>
                         <Linkedin className="w-3.5 h-3.5" />
                       </a>
@@ -159,39 +168,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
                   </div>
                 </div>
               </motion.div>
-            )) : (
-              /* Fallback: hardcoded team member from Upwork profile */
-              <motion.div
-                className="group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-6 flex items-center justify-center">
-                  <User className="w-16 h-16 text-[var(--muted)]/20" />
-                </div>
-                <div>
-                  <h3 className="font-display font-black uppercase text-2xl text-[var(--text)] mb-1">Sheikh Mariful I.</h3>
-                  <span className="inline-block font-mono text-[11px] tracking-[3px] uppercase text-[var(--accent-text)] bg-[var(--accent)] px-3 py-1 rounded-full mb-3">
-                    AI Image Generation Expert
-                  </span>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {['AI Photography', 'Adobe Photoshop', 'Midjourney AI', 'Meta Ad Creatives', 'eCommerce Visuals', 'Figma'].map((r) => (
-                      <span key={r} className="font-body text-xs text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-sm">
-                        {r}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="font-body text-sm text-[var(--muted)] leading-relaxed mb-2">
-                    AI image manipulation expert with 100% Job Success on Upwork. 3+ years delivering high-converting product visuals, lifestyle mockups, and ad creatives for global e-commerce brands. Based in Khulna, Bangladesh.
-                  </p>
-                  <div className="flex items-center gap-2 mt-3">
-                    <span className="font-mono text-[10px] text-[var(--accent)] border border-[var(--accent)]/30 px-2 py-0.5 rounded-sm">⭐ 100% Job Success</span>
-                    <span className="font-mono text-[10px] text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-sm">🏆 Top Rated</span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
+            ))}
           </div>
         </div>
       </section>
