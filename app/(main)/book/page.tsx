@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Schedule a free consultation with the WEBRING team. We will discuss your brand, product photography needs, and create a custom visual strategy.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getData() {
   try {

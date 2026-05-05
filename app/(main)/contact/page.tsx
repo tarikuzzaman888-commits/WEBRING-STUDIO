@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Get in touch with WEBRING. We respond within 24 hours. Email us at hello@webring.studio or fill out our contact form.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getSiteSettings(): Promise<SiteSettings | null> {
   try {

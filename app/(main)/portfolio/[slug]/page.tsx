@@ -9,7 +9,7 @@ import {
 import type { PortfolioItem } from '@/lib/types';
 import PortfolioDetailClient from './PortfolioDetailClient';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   try {

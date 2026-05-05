@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Browse our portfolio of AI-powered product photography, lifestyle shoots, e-commerce visuals, and branding projects for clients worldwide.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getPortfolio(): Promise<PortfolioItem[]> {
   try {

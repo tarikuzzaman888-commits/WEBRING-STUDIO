@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Meet the creative team behind WEBRING. We are a Bangladesh-based AI-powered product photography and brand visual studio serving clients worldwide.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 import { fallbackTeam } from '@/lib/fallbackData';
 

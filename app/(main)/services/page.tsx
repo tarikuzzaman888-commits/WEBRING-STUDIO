@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'From AI product photography to complete brand identity packages. Explore the five core services WEBRING offers to transform your e-commerce visuals.',
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 const fallbackServices: Service[] = [
   {

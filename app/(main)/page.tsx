@@ -24,7 +24,7 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import AboutSection from '@/components/home/AboutSection';
 import CTABanner from '@/components/home/CTABanner';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 async function getData() {
   try {
