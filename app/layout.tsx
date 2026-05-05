@@ -92,8 +92,9 @@ export default async function RootLayout({
                 color: 'var(--text)',
                 border: '1px solid var(--border)',
               },
+            }}
           />
-          <Analytics />
+              <Analytics />
         </ThemeProvider>
       </body>
     </html>
