@@ -70,7 +70,7 @@ export default function PortfolioGrid({ items }: PortfolioGridProps) {
           <div className="relative">
             <select 
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as 'latest' | 'oldest')}
               className="bg-[#111] border border-white/10 rounded-full px-6 py-2.5 font-display font-bold text-[10px] uppercase tracking-widest text-white/80 focus:outline-none focus:border-[var(--accent)] transition-colors cursor-pointer appearance-none pr-10"
             >
               <option value="latest">Latest</option>

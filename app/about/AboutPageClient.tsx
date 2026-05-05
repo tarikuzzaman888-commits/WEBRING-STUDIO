@@ -32,7 +32,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
               >
                 <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
                 <span className="font-display text-[10px] font-bold tracking-widest uppercase text-[var(--accent)]">
-                  // WE ARE WEBRING
+                  {/* WE ARE WEBRING */}
                 </span>
               </motion.div>
 
@@ -112,7 +112,7 @@ export default function AboutPageClient({ team }: AboutPageClientProps) {
               viewport={{ once: true }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">// OUR MISSION</span>
+              <span className="font-mono text-[11px] tracking-[4px] uppercase text-[var(--accent)]">{/* OUR MISSION */}</span>
             </motion.div>
             
             <motion.h2

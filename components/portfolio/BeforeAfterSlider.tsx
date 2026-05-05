@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;

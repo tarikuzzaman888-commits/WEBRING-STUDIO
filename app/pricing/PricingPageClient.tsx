@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence, useSpring, useTransform } from 'framer-motion';
-import { Check, Plus, Minus, Shield, Sparkles, CheckCircle, ArrowRight, Star, Lock } from 'lucide-react';
+import { motion, useSpring, useTransform } from 'framer-motion';
+import { Check, Minus, Shield, Sparkles, CheckCircle, Star, Lock } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -21,14 +21,6 @@ function AnimatedNumber({ value }: { value: number }) {
 
 // --- Data ---
 
-const faqs = [
-  { question: 'How does AI product photography work?', answer: 'You send us your raw product images (even smartphone photos). We use a combination of AI tools like Midjourney, Stable Diffusion, and Adobe Firefly along with expert Photoshop work to transform them into studio-quality visuals. The result is indistinguishable from a professional photoshoot.' },
-  { question: "What's the typical turnaround time?", answer: 'Our standard delivery time is 2-4 business days depending on the complexity of the project. Rush delivery options are available if you need your visuals sooner.' },
-  { question: 'Do you work with international clients?', answer: 'Yes! We work with brands globally. All our communication and delivery are handled digitally, making it seamless to work with us from anywhere in the world.' },
-  { question: 'Can I request revisions?', answer: 'Absolutely. We offer revision rounds on all our packages to ensure the final result perfectly matches your brand vision.' },
-  { question: 'What file formats do you deliver?', answer: 'We deliver high-resolution JPEG, PNG (with transparency if needed), and WebP formats optimized for e-commerce platforms like Amazon and Shopify.' },
-  { question: 'Do you offer refunds?', answer: 'We strive for 100% satisfaction. If we cannot meet your requirements after the revision rounds, we offer a fair refund policy based on the project stage.' },
-];
 
 const featuresTable = [
   { feature: 'Images per month', starter: '5', growth: '15', enterprise: 'Unlimited' },
@@ -47,7 +39,6 @@ const featuresTable = [
 
 export default function PricingPageClient() {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | '6month' | 'yearly'>('yearly');
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   
   // ROI Calculator State
   const [products, setProducts] = useState(10);
@@ -352,7 +343,7 @@ export default function PricingPageClient() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <span className="font-mono text-[10px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block">// THE MATH</span>
+              <span className="font-mono text-[10px] tracking-[4px] uppercase text-[var(--accent)] mb-6 block">{/* THE MATH */}</span>
               <h2 className="font-display font-black uppercase text-4xl md:text-6xl lg:text-7xl leading-none text-white mb-8">
                 See your return<br />before you invest.
               </h2>
