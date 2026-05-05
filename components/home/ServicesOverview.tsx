@@ -22,7 +22,7 @@ const fallbackServices = [
       'Multi-angle variations',
       'Amazon & Shopify optimized'
     ],
-    image: '/images/hero/watch.png'
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop' // Watch
   },
   {
     id: '02',
@@ -34,8 +34,7 @@ const fallbackServices = [
       'Platform-specific sizing',
       'Seasonal/thematic variations'
     ],
-    image: '/images/hero/perfume.png',
-    highlight: true
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop' // Perfume
   },
   {
     id: '03',
@@ -48,7 +47,7 @@ const fallbackServices = [
       'A+ Content / EBC images',
       'Mobile-optimized crops'
     ],
-    image: '/images/hero/camera.png'
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop' // Tech/Phone
   },
   {
     id: '04',
@@ -61,7 +60,7 @@ const fallbackServices = [
       'Social media templates',
       'Business card & stationery'
     ],
-    image: '/images/hero/sneaker.png'
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop' // Sneaker
   }
 ];
 
@@ -73,8 +72,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
         title: s.title,
         description: s.description,
         features: s.features || [],
-        image: s.image ? urlFor(s.image).width(600).height(450).url() : fallbackServices[i % 4].image,
-        highlight: i === 1 // Just for demo, first card highlighted
+        image: s.image ? urlFor(s.image).width(600).height(450).url() : fallbackServices[i % 4].image
       }))
     : fallbackServices; 
 
@@ -118,7 +116,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
           {items.map((service, i) => (
             <motion.div
               key={service.id}
-              className={`group flex flex-col bg-[var(--surface)] dark:bg-[#0D0D0D] border ${service.highlight ? 'border-[var(--accent)]' : 'border-[var(--border)]'} rounded-[2rem] overflow-hidden transition-all duration-300 hover:border-[var(--accent)]/50`}
+              className={`group flex flex-col bg-[var(--surface)] dark:bg-[#0D0D0D] border border-[var(--border)] rounded-[2rem] overflow-hidden transition-all duration-300 hover:border-[var(--accent)]`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -131,6 +129,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                   alt={service.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
               </div>
 

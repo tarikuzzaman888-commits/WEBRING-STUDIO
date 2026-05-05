@@ -121,7 +121,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 />
               ) : (
                 <Image
-                  src="/images/hero/fallback.jpg" // You can provide a fallback image later
+                  src="https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=800&auto=format&fit=crop" 
                   alt="WEBRING Visual Engineering"
                   fill
                   className="object-cover bg-[var(--surface)]"

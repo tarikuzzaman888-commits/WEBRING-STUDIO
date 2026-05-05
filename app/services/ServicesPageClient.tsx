@@ -79,6 +79,14 @@ export default function ServicesPageClient({ services }: ServicesPageClientProps
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
+                ) : service.fallbackUrl ? (
+                  <Image
+                    src={service.fallbackUrl}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center text-[var(--accent)]">
                     {iconMap[service.icon] || <Camera className="w-16 h-16 opacity-20" />}

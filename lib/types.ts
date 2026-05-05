@@ -50,14 +50,26 @@ export interface PortfolioItem {
   title: string;
   slug: { current: string };
   category: 'AI Photography' | 'Lifestyle' | 'E-commerce' | 'Branding' | 'Video';
-  mainImage: SanityImage;
-  beforeImage?: SanityImage;
-  afterImage?: SanityImage;
   clientIndustry?: string;
-  description?: string;
-  tags?: string[];
+  projectDate?: string;
   featured: boolean;
   order: number;
+  coverImage: SanityImage;
+  projectImages?: Array<{
+    image: SanityImage;
+    caption?: string;
+    isBeforeImage?: boolean;
+    isAfterImage?: boolean;
+  }>;
+  shortDescription?: string;
+  fullDescription?: string;
+  tools?: string[];
+  tags?: string[];
+  results?: Array<{
+    metric: string;
+    value: string;
+    description: string;
+  }>;
   fallbackUrl?: string;
 }
 
@@ -82,6 +94,7 @@ export interface Service {
   description: string;
   features: string[];
   image?: SanityImage;
+  fallbackUrl?: string;
   icon: string;
   startingPrice?: string;
   order: number;

@@ -58,13 +58,25 @@ export const allPortfolioQuery = groq`
     title,
     slug,
     category,
-    mainImage,
-    beforeImage,
-    afterImage,
     clientIndustry,
-    description,
-    tags,
+    projectDate,
     featured,
+    coverImage,
+    projectImages[] {
+      image,
+      caption,
+      isBeforeImage,
+      isAfterImage
+    },
+    shortDescription,
+    fullDescription,
+    tools,
+    tags,
+    results[] {
+      metric,
+      value,
+      description
+    },
     order
   }
 `;
@@ -75,8 +87,14 @@ export const featuredPortfolioQuery = groq`
     title,
     slug,
     category,
-    mainImage,
-    tags,
+    coverImage,
+    shortDescription,
+    projectImages[] {
+      image,
+      caption,
+      isBeforeImage,
+      isAfterImage
+    },
     featured,
     order
   }
@@ -88,13 +106,25 @@ export const portfolioBySlugQuery = groq`
     title,
     slug,
     category,
-    mainImage,
-    beforeImage,
-    afterImage,
     clientIndustry,
-    description,
-    tags,
+    projectDate,
     featured,
+    coverImage,
+    projectImages[] {
+      image,
+      caption,
+      isBeforeImage,
+      isAfterImage
+    },
+    shortDescription,
+    fullDescription,
+    tools,
+    tags,
+    results[] {
+      metric,
+      value,
+      description
+    },
     order
   }
 `;
@@ -105,7 +135,8 @@ export const relatedPortfolioQuery = groq`
     title,
     slug,
     category,
-    mainImage,
+    coverImage,
+    shortDescription,
     tags
   }
 `;

@@ -11,32 +11,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const fallbackTeam: TeamMember[] = [
-  {
-    _id: '1',
-    name: 'Shiekh Mariful',
-    role: 'CEO',
-    responsibilities: ['Creative Final Decision Maker', 'Consultation'],
-    bio: 'Visionary leader driving WEBRING\'s creative direction. Shiekh ensures every project meets the highest standards of visual excellence.',
-    order: 0,
-  },
-  {
-    _id: '2',
-    name: 'Many',
-    role: 'Co-Founder',
-    responsibilities: ['Lead Generation', 'Consultation'],
-    bio: 'Strategic mind behind WEBRING\'s growth. Many connects brands with our creative solutions and ensures client success.',
-    order: 1,
-  },
-  {
-    _id: '3',
-    name: 'Tarikuzzaman Sabbir',
-    role: 'HR & Manager',
-    responsibilities: ['Creative Initial Decision Maker', 'Editor'],
-    bio: 'The creative engine of WEBRING. Sabbir oversees the editing pipeline and makes initial creative decisions that shape every project.',
-    order: 2,
-  },
-];
+import { fallbackTeam } from '@/lib/fallbackData';
 
 async function getTeam(): Promise<TeamMember[]> {
   try {

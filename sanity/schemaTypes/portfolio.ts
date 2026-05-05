@@ -1,22 +1,26 @@
-import { defineType, defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-export const portfolio = defineType({
+export default defineType({
   name: 'portfolio',
   title: 'Portfolio',
   type: 'document',
   fields: [
+    // Basic Info
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Project Title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 96 },
-      validation: (rule) => rule.required(),
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'category',
@@ -31,70 +35,121 @@ export const portfolio = defineType({
           { title: 'Video', value: 'Video' },
         ],
       },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'image',
-      options: { hotspot: true },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'beforeImage',
-      title: 'Before Image',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'afterImage',
-      title: 'After Image',
-      type: 'image',
-      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'clientIndustry',
       title: 'Client Industry',
       type: 'string',
+      description: 'e.g. Fashion, Supplements, Electronics',
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
+      name: 'projectDate',
+      title: 'Project Date',
+      type: 'date',
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured on Homepage',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+    }),
+
+    // Like Upwork — Multiple Images per project
+    defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      description: 'Main thumbnail shown in grid (Square recommended)',
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'projectImages',
+      title: 'Project Images (Gallery)',
+      type: 'array',
+      description: 'Upload multiple images for this project gallery',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'image', type: 'image', options: { hotspot: true } },
+            { name: 'caption', type: 'string' },
+            { 
+              name: 'isBeforeImage', 
+              type: 'boolean', 
+              title: 'Is this a BEFORE image?',
+              initialValue: false 
+            },
+            { 
+              name: 'isAfterImage', 
+              type: 'boolean', 
+              title: 'Is this an AFTER image?',
+              initialValue: false 
+            }
+          ],
+          preview: {
+            select: { media: 'image', title: 'caption' }
+          }
+        }
+      ]
+    }),
+
+    // Project Details
+    defineField({
+      name: 'shortDescription',
+      title: 'Short Description',
+      type: 'string',
+      description: 'One line shown in grid card card (max 60 chars)',
+    }),
+    defineField({
+      name: 'fullDescription',
+      title: 'Full Description',
       type: 'text',
-      rows: 4,
+      description: 'Full project story shown in detail view',
+    }),
+    defineField({
+      name: 'tools',
+      title: 'Tools Used',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'e.g. Photoshop, Midjourney, Gemini AI',
     }),
     defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
       of: [{ type: 'string' }],
-      options: { layout: 'tags' },
     }),
+    
+    // Results/Stats
     defineField({
-      name: 'featured',
-      title: 'Featured',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-      initialValue: 0,
-    }),
-  ],
-  orderings: [
-    {
-      title: 'Display Order',
-      name: 'orderAsc',
-      by: [{ field: 'order', direction: 'asc' }],
-    },
+      name: 'results',
+      title: 'Project Results',
+      type: 'array',
+      description: 'Impact metrics like conversion lift',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'metric', type: 'string', description: 'e.g. Conversion Rate' },
+            { name: 'value', type: 'string', description: 'e.g. +47%' },
+            { name: 'description', type: 'string', description: 'e.g. increase after new images' }
+          ]
+        }
+      ]
+    })
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'category',
-      media: 'mainImage',
+      media: 'coverImage',
     },
   },
 });
