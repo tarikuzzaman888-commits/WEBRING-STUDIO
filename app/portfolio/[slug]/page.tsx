@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { client } from '@/sanity/lib/client';
+import { urlFor } from '@/sanity/lib/image';
 import {
   portfolioBySlugQuery,
   portfolioSlugsQuery,
@@ -33,7 +34,7 @@ export async function generateMetadata({
       title: `${item.title} | WEBRING Portfolio`,
       description: item.shortDescription || `${item.title} — ${item.category} project by WEBRING`,
       openGraph: {
-        images: item.coverImage ? [client.fetch] : [],
+        images: item.coverImage ? [urlFor(item.coverImage).width(1200).height(630).url()] : [],
       }
     };
   } catch {
