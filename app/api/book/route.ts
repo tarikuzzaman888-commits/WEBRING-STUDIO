@@ -128,6 +128,23 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Send to Google Sheets (Optional Webhook)
+    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
+    if (GOOGLE_SHEET_URL) {
+      try {
+        await fetch(GOOGLE_SHEET_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            ...data,
+            services: data.services.join(', '),
+            submittedAt: new Date().toISOString()
+          }),
+        });
+      } catch (sheetError) {
+        console.error('Failed to save to Google Sheets:', sheetError);
+      }
+    }
+
     return NextResponse.json({ success: true, bookingId });
   } catch (error) {
     if (error instanceof z.ZodError) {
