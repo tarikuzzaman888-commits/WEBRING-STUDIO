@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from "@vercel/analytics/react";
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/shared/ThemeProvider';
@@ -91,8 +92,8 @@ export default async function RootLayout({
                 color: 'var(--text)',
                 border: '1px solid var(--border)',
               },
-            }}
           />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
