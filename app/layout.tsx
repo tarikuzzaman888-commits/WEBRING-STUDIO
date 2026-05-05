@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Barlow_Condensed, Space_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/shared/ThemeProvider';
 import Navbar from '@/components/layout/Navbar';
@@ -9,23 +9,9 @@ import { client } from '@/sanity/lib/client';
 import { siteSettingsQuery } from '@/sanity/lib/queries';
 import type { SiteSettings } from '@/lib/types';
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-mono',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -87,7 +73,7 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${dmSans.variable} ${barlowCondensed.variable} ${spaceMono.variable} font-body antialiased`}>
+      <body className={`${inter.variable} font-body antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

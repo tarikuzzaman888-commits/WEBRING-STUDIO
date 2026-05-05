@@ -20,10 +20,10 @@ const config: Config = {
         border: 'var(--border)',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'sans-serif'],
-        condensed: ['var(--font-display)', 'sans-serif'],
-        body: ['var(--font-body)', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        display: ['var(--font-inter)', 'sans-serif'],
+        condensed: ['var(--font-inter)', 'sans-serif'],
+        body: ['var(--font-inter)', 'sans-serif'],
+        mono: ['var(--font-inter)', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['clamp(3rem, 8vw, 6.5rem)', { lineHeight: '1.05' }],
