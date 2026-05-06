@@ -29,7 +29,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
   const heroImage = data?.heroImages?.[0]; // Get the first image from Sanity or fallback
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-40 lg:pt-24 pb-16">
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
