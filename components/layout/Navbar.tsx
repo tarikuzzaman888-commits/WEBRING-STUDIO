@@ -133,19 +133,22 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Hamburger */}
-            <button
-              className="lg:hidden w-10 h-10 flex items-center justify-center"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              id="mobile-menu-toggle"
-              aria-label="Toggle mobile menu"
-            >
-              {mobileOpen ? (
-                <X className="w-6 h-6 text-[var(--text)]" />
-              ) : (
-                <Menu className="w-6 h-6 text-[var(--text)]" />
-              )}
-            </button>
+            {/* Mobile Actions */}
+            <div className="flex lg:hidden items-center gap-2">
+              <ThemeToggle />
+              <button
+                className="w-10 h-10 flex items-center justify-center"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                id="mobile-menu-toggle"
+                aria-label="Toggle mobile menu"
+              >
+                {mobileOpen ? (
+                  <X className="w-6 h-6 text-[var(--text)]" />
+                ) : (
+                  <Menu className="w-6 h-6 text-[var(--text)]" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -189,12 +192,9 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 className="flex flex-col items-center gap-4 mt-8"
               >
-                <div className="flex items-center gap-4">
-                  <ThemeToggle />
-                <div className="flex flex-col items-center gap-1 font-mono text-[10px] text-[var(--muted)]">
+                <div className="flex flex-col items-center gap-1 font-mono text-[10px] text-[var(--muted)] mt-4">
                   <span>UTC {utcClock}</span>
                   <span className="text-[var(--accent)] font-bold">GMT+6 {clock}</span>
-                </div>
                 </div>
                 <Link
                   href="/book"
