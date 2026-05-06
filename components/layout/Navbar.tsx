@@ -77,7 +77,7 @@ export default function Navbar() {
               ? 'border-b border-[var(--border)] shadow-sm glass bg-[var(--bg)]/95'
               : 'bg-transparent'
           )}
-          style={scrolled ? { backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(10,10,10,0.95)' : 'rgba(250,250,248,0.95)' } : undefined}
+          style={scrolled ? { backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(10,10,10,0.7)' : 'rgba(250,250,248,0.7)' } : undefined}
         >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
           <div className="flex items-center justify-between h-20">
