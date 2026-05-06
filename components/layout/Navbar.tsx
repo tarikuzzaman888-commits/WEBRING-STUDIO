@@ -87,7 +87,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden xl:flex items-center gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -110,7 +110,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden xl:flex items-center gap-4">
               {/* Live Clocks */}
               <div className="flex items-center gap-3 font-mono text-[10px] text-[var(--muted)] tracking-wider">
                 <div className="flex items-center gap-1.5" id="nav-utc">
@@ -134,7 +134,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Actions */}
-            <div className="flex lg:hidden items-center gap-2">
+            <div className="flex xl:hidden items-center gap-2">
               <ThemeToggle />
               <button
                 className="w-10 h-10 flex items-center justify-center"
