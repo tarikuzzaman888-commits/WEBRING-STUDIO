@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { formatDate } from '@/lib/utils';
 import type { Service, AvailableDates, TeamMember } from '@/lib/types';
+import PhoneInput from '@/components/shared/PhoneInput';
+import EmailInput from '@/components/shared/EmailInput';
 
 const fallbackServices = [
   'AI Product Photography',
@@ -412,21 +414,19 @@ export default function BookPageClient({ services, availableDates, team }: BookP
                     </div>
                     <div>
                       <label className="font-body text-sm text-foreground mb-2 block">Email *</label>
-                      <input
-                        type="email"
+                      <EmailInput
+                        id="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                        onChange={setEmail}
                         placeholder="you@example.com"
                       />
                     </div>
                     <div>
                       <label className="font-body text-sm text-foreground mb-2 block">WhatsApp (optional)</label>
-                      <input
+                      <PhoneInput
+                        id="whatsapp"
                         value={whatsapp}
-                        onChange={(e) => setWhatsapp(e.target.value)}
-                        className="w-full bg-surface border border-border rounded-[2rem] px-4 py-3 font-body text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
-                        placeholder="+880..."
+                        onChange={setWhatsapp}
                       />
                     </div>
                     <div>

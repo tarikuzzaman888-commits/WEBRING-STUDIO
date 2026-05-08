@@ -8,6 +8,8 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 import { Mail, MessageSquare, Clock, MapPin, Instagram, Facebook, Linkedin, Send } from 'lucide-react';
 import type { SiteSettings } from '@/lib/types';
+import PhoneInput from '@/components/shared/PhoneInput';
+import EmailInput from '@/components/shared/EmailInput';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -15,6 +17,7 @@ const contactSchema = z.object({
   subject: z.string().min(3, 'Subject is required'),
   service: z.string().min(1, 'Please select a service'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
+  phone: z.string().optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -25,7 +28,10 @@ interface ContactPageClientProps {
 
 export default function ContactPageClient({ siteSettings }: ContactPageClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
+
+  const watchEmail = watch('email');
+  const watchPhone = watch('phone' as any);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -90,16 +96,30 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
             <div className="lg:col-span-3">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" id="contact-form">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { id: 'contact-name', label: 'Name *', reg: 'name' as const, placeholder: 'Your name', type: 'text' },
-                    { id: 'contact-email', label: 'Email *', reg: 'email' as const, placeholder: 'you@example.com', type: 'email' },
-                  ].map((f) => (
-                    <div key={f.id}>
-                      <label htmlFor={f.id} className="font-body text-sm text-[var(--text)] mb-2 block">{f.label}</label>
-                      <input id={f.id} type={f.type} {...register(f.reg)} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder={f.placeholder} />
-                      {errors[f.reg] && <p className="text-red-500 text-xs mt-1 font-body">{errors[f.reg]?.message}</p>}
-                    </div>
-                  ))}
+                  <div>
+                    <label htmlFor="contact-name" className="font-body text-sm text-[var(--text)] mb-2 block">Name *</label>
+                    <input id="contact-name" type="text" {...register('name')} className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-full rounded-[2rem] px-4 py-3 font-body text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-colors" placeholder="Your name" />
+                    {errors.name && <p className="text-red-500 text-xs mt-1 font-body">{errors.name.message}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="font-body text-sm text-[var(--text)] mb-2 block">Email *</label>
+                    <EmailInput
+                      id="contact-email"
+                      value={watchEmail || ''}
+                      onChange={(val) => setValue('email', val, { shouldValidate: true })}
+                      placeholder="you@example.com"
+                    />
+                    {errors.email && <p className="text-red-500 text-xs mt-1 font-body">{errors.email.message}</p>}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-phone" className="font-body text-sm text-[var(--text)] mb-2 block">Phone / WhatsApp (Optional)</label>
+                  <PhoneInput
+                    id="contact-phone"
+                    value={watchPhone || ''}
+                    onChange={(val) => setValue('phone' as any, val)}
+                  />
                 </div>
                 <div>
                   <label htmlFor="contact-subject" className="font-body text-sm text-[var(--text)] mb-2 block">Subject *</label>
