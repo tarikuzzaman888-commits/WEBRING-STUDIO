@@ -31,7 +31,7 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
   const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
 
   const watchEmail = watch('email');
-  const watchPhone = watch('phone' as any);
+  const watchPhone = watch('phone');
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -118,7 +118,7 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
                   <PhoneInput
                     id="contact-phone"
                     value={watchPhone || ''}
-                    onChange={(val) => setValue('phone' as any, val)}
+                    onChange={(val) => setValue('phone', val)}
                   />
                 </div>
                 <div>
