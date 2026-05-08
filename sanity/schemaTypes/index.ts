@@ -7,6 +7,7 @@ import { testimonial } from './testimonial';
 import { pricing } from './pricing';
 import { booking } from './booking';
 import { availableDates } from './availableDates';
+import { contact } from './contact';
 
 export const schemaTypes = [
   siteSettings,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   pricing,
   booking,
   availableDates,
+  contact,
 ];
