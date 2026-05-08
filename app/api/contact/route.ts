@@ -101,13 +101,12 @@ export async function POST(request: NextRequest) {
     }
 
     // 3. Send to Google Sheets (Webhook)
-    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
-    if (GOOGLE_SHEET_URL) {
+    const CONTACT_SHEET_URL = process.env.CONTACT_GOOGLE_SHEET_URL || process.env.GOOGLE_SHEET_URL;
+    if (CONTACT_SHEET_URL) {
       try {
-        await fetch(GOOGLE_SHEET_URL, {
+        await fetch(CONTACT_SHEET_URL, {
           method: 'POST',
           body: JSON.stringify({
-            formType: 'Contact',
             ...data,
             submittedAt: new Date().toISOString()
           }),
