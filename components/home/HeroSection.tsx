@@ -1,13 +1,16 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { urlFor } from '@/sanity/lib/image';
 import { cn } from '@/lib/utils';
-import type { HomePage } from '@/lib/types';
+import type { HomePage, SanityImage } from '@/lib/types';
+
+// Define a type for carousel images that includes our dummy property
+type CarouselImage = SanityImage & { _dummyUrl?: string };
 
 interface HeroSectionProps {
   data: HomePage | null;
@@ -33,7 +36,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
   
   // Combine main image, gallery images, and dummy images for preview
   const allImages = useMemo(() => {
-    const images = [];
+    const images: CarouselImage[] = [];
     if (data?.heroMainImage) images.push(data.heroMainImage);
     if (data?.heroImages && data.heroImages.length > 0) {
       images.push(...data.heroImages);
@@ -49,19 +52,19 @@ export default function HeroSection({ data }: HeroSectionProps) {
         "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=800&auto=format&fit=crop"  // Skincare Product
       ];
       // Convert URL strings to a format the Image component can handle alongside Sanity images
-      return [...images, ...dummyUrls.map(url => ({ _type: 'image', _dummyUrl: url }))];
+      return [...images, ...dummyUrls.map(url => ({ _type: 'image', _dummyUrl: url } as CarouselImage))];
     }
     
     return images;
   }, [data]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-  };
+  }, [allImages.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-  };
+  }, [allImages.length]);
 
   // Auto-slide effect
   useEffect(() => {
@@ -165,7 +168,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
               >
                 {allImages.length > 0 ? (
                   <Image
-                    src={(allImages[currentImageIndex] as any)._dummyUrl || urlFor(allImages[currentImageIndex]).width(800).height(1000).url()}
+                    src={allImages[currentImageIndex]._dummyUrl || urlFor(allImages[currentImageIndex]).width(800).height(1000).url()}
                     alt={`WEBRING Visual Engineering ${currentImageIndex + 1}`}
                     fill
                     className="object-cover pointer-events-none"
