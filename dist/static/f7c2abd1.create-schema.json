@@ -1,0 +1,1184 @@
+[
+  {
+    "fields": [
+      {
+        "initialValue": "WEBRING",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "companyName",
+        "type": "string"
+      },
+      {
+        "initialValue": "We Don't Just Edit. We Engineer Reality.",
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "initialValue": "hello@webring.studio",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "whatsapp",
+        "type": "string",
+        "title": "WhatsApp Number"
+      },
+      {
+        "initialValue": "Bangladesh — Available Worldwide",
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "logo",
+        "type": "image",
+        "title": "Logo (Light Mode)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "logoDark",
+        "type": "image",
+        "title": "Logo (Dark Mode)"
+      },
+      {
+        "name": "ogImage",
+        "type": "image",
+        "title": "OG Image (Social Sharing)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "instagramUrl",
+        "type": "url",
+        "title": "Instagram URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "facebookUrl",
+        "type": "url",
+        "title": "Facebook URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedinUrl",
+        "type": "url",
+        "title": "LinkedIn URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "behanceUrl",
+        "type": "url",
+        "title": "Behance URL"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "name",
+                "type": "string",
+                "title": "Brand Name"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "logo",
+                "type": "image",
+                "title": "Brand Logo"
+              }
+            ],
+            "type": "object",
+            "name": "clientBrand"
+          }
+        ],
+        "name": "clientBrands",
+        "type": "array"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "We Engineer",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "heroLine1",
+        "type": "string"
+      },
+      {
+        "initialValue": "Reality.",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "heroLine2",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "initialValue": "AI-powered product photography and brand visuals that convert browsers into buyers. Based in Bangladesh, serving brands worldwide.",
+        "name": "heroSubtitle",
+        "type": "text"
+      },
+      {
+        "initialValue": "Trusted by 200+ brands across 15 countries",
+        "name": "socialProof",
+        "type": "string",
+        "title": "Social Proof Text"
+      },
+      {
+        "initialValue": "See Our Work",
+        "name": "cta1Text",
+        "type": "string",
+        "title": "CTA Button 1 Text"
+      },
+      {
+        "initialValue": "Book a Free Call",
+        "name": "cta2Text",
+        "type": "string",
+        "title": "CTA Button 2 Text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "heroMainImage",
+        "type": "image",
+        "title": "Hero Main Image (The big image on the right)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "heroImages",
+        "type": "array",
+        "title": "Additional Hero Gallery (Optional)"
+      },
+      {
+        "initialValue": "AI Product Photography ✦ Brand Identity ✦ E-commerce Visuals ✦ Lifestyle Shoots ✦ Video Content ✦ Creative Direction ✦",
+        "name": "marqueeText",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "value",
+                "type": "number"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "initialValue": "+",
+                "name": "suffix",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "stat"
+          }
+        ],
+        "name": "stats",
+        "type": "array",
+        "title": "Statistics"
+      },
+      {
+        "initialValue": "Ready to make your product irresistible?",
+        "name": "ctaBannerHeading",
+        "type": "string",
+        "title": "CTA Banner Heading"
+      },
+      {
+        "initialValue": "Let's create visuals that don't just look good — they sell.",
+        "name": "ctaBannerSubtext",
+        "type": "string",
+        "title": "CTA Banner Subtext"
+      }
+    ],
+    "name": "homePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Project Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "AI Photography",
+              "value": "AI Photography"
+            },
+            {
+              "title": "Lifestyle",
+              "value": "Lifestyle"
+            },
+            {
+              "title": "E-commerce",
+              "value": "E-commerce"
+            },
+            {
+              "title": "Branding",
+              "value": "Branding"
+            },
+            {
+              "title": "Video",
+              "value": "Video"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "AI Photography",
+                  "Lifestyle",
+                  "E-commerce",
+                  "Branding",
+                  "Video"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "description": "e.g. Fashion, Supplements, Electronics",
+        "name": "clientIndustry",
+        "type": "string"
+      },
+      {
+        "name": "projectDate",
+        "type": "date"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured on Homepage"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Main thumbnail shown in grid (Square recommended)",
+        "name": "coverImage",
+        "type": "image"
+      },
+      {
+        "description": "Upload multiple images for this project gallery",
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              },
+              {
+                "initialValue": false,
+                "name": "isBeforeImage",
+                "type": "boolean",
+                "title": "Is this a BEFORE image?"
+              },
+              {
+                "initialValue": false,
+                "name": "isAfterImage",
+                "type": "boolean",
+                "title": "Is this an AFTER image?"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "projectImages",
+        "type": "array",
+        "title": "Project Images (Gallery)"
+      },
+      {
+        "description": "One line shown in grid card card (max 60 chars)",
+        "name": "shortDescription",
+        "type": "string"
+      },
+      {
+        "description": "Full project story shown in detail view",
+        "name": "fullDescription",
+        "type": "text"
+      },
+      {
+        "description": "e.g. Photoshop, Midjourney, Gemini AI",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tools",
+        "type": "array",
+        "title": "Tools Used"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "description": "Impact metrics like conversion lift",
+        "of": [
+          {
+            "fields": [
+              {
+                "description": "e.g. Conversion Rate",
+                "name": "metric",
+                "type": "string"
+              },
+              {
+                "description": "e.g. +47%",
+                "name": "value",
+                "type": "string"
+              },
+              {
+                "description": "e.g. increase after new images",
+                "name": "description",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "results",
+        "type": "array",
+        "title": "Project Results"
+      }
+    ],
+    "name": "portfolio",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "responsibilities",
+        "type": "array"
+      },
+      {
+        "rows": 4,
+        "name": "bio",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "photo",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "instagramUrl",
+        "type": "url",
+        "title": "Instagram URL"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedinUrl",
+        "type": "url",
+        "title": "LinkedIn URL"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number"
+      }
+    ],
+    "name": "teamMember",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "rows": 5,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "e.g. Camera, Palette, ShoppingBag, Video, Sparkles",
+        "name": "icon",
+        "type": "string",
+        "title": "Icon Name (Lucide)"
+      },
+      {
+        "name": "startingPrice",
+        "type": "string"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number"
+      }
+    ],
+    "name": "service",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "clientName",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "company",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "quote",
+        "type": "text"
+      },
+      {
+        "initialValue": 5,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rating",
+        "type": "number",
+        "title": "Rating (1-5)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "avatar",
+        "type": "image"
+      },
+      {
+        "name": "service",
+        "type": "string",
+        "title": "Service Used"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "tierName",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Set to 0 to display as \"Custom\"",
+        "name": "price",
+        "type": "number",
+        "title": "Price (0 = Custom)"
+      },
+      {
+        "initialValue": "per project",
+        "name": "period",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "name": "highlighted",
+        "type": "boolean",
+        "title": "Highlighted (POPULAR)"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array"
+      },
+      {
+        "initialValue": "Get Started",
+        "name": "ctaText",
+        "type": "string",
+        "title": "CTA Button Text"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number"
+      }
+    ],
+    "name": "pricing",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "clientName",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "whatsapp",
+        "type": "string",
+        "title": "WhatsApp"
+      },
+      {
+        "readOnly": true,
+        "name": "company",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "readOnly": true,
+        "name": "services",
+        "type": "array",
+        "title": "Services Requested"
+      },
+      {
+        "readOnly": true,
+        "name": "productCategory",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "budget",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "readOnly": true,
+        "name": "selectedDate",
+        "type": "date"
+      },
+      {
+        "readOnly": true,
+        "name": "selectedTime",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "referral",
+        "type": "string",
+        "title": "Referral Source"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pending",
+              "value": "pending"
+            },
+            {
+              "title": "Confirmed",
+              "value": "confirmed"
+            },
+            {
+              "title": "Completed",
+              "value": "completed"
+            },
+            {
+              "title": "Cancelled",
+              "value": "cancelled"
+            }
+          ]
+        },
+        "initialValue": "pending",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "createdAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "booking",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "Add dates when the team is available for calls",
+        "of": [
+          {
+            "type": "date",
+            "title": "Datetime"
+          }
+        ],
+        "name": "dates",
+        "type": "array",
+        "title": "Available Dates"
+      },
+      {
+        "description": "e.g. \"10:00 AM\", \"2:00 PM\", \"4:00 PM\"",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "timeSlots",
+        "type": "array",
+        "title": "Available Time Slots"
+      }
+    ],
+    "name": "availableDates",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "readOnly": true,
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "phone",
+        "type": "string",
+        "title": "Phone / WhatsApp"
+      },
+      {
+        "readOnly": true,
+        "name": "subject",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "service",
+        "type": "string",
+        "title": "Service Interested In"
+      },
+      {
+        "readOnly": true,
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "New",
+              "value": "new"
+            },
+            {
+              "title": "Read",
+              "value": "read"
+            },
+            {
+              "title": "Replied",
+              "value": "replied"
+            },
+            {
+              "title": "Archived",
+              "value": "archived"
+            }
+          ]
+        },
+        "initialValue": "new",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "createdAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "contact",
+    "type": "document",
+    "title": "Contact Messages"
+  }
+]

@@ -150,15 +150,18 @@ export default function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           {/* Right — Image Carousel */}
-          <div className="lg:col-span-6 xl:col-span-5 relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] xl:aspect-[3/3.5] rounded-xl overflow-hidden mt-8 lg:mt-0 bg-[var(--surface)] group">
-            <AnimatePresence mode="wait">
+          <div className="lg:col-span-6 xl:col-span-5 relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] xl:aspect-[3/3.5] rounded-xl overflow-hidden mt-8 lg:mt-0 bg-black group">
+            <AnimatePresence initial={false}>
               <motion.div
                 key={currentImageIndex}
-                className="w-full h-full relative cursor-grab active:cursor-grabbing"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ 
+                  duration: 1.2, 
+                  ease: [0.22, 1, 0.36, 1] 
+                }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => {

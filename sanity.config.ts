@@ -14,10 +14,11 @@ const projectId = 'rifht9hi';
 const dataset = 'production';
 
 export default defineConfig({
-  name: 'webring-studio',
-  title: 'WEBRING Studio',
+  name: 'webring-admin',
+  title: 'WEBRING | ADMIN BACKEND',
   projectId,
   dataset,
+  basePath: '/studio',
   plugins: [
     structureTool({ structure }),
     visionTool({ defaultApiVersion: '2024-01-01' }),
