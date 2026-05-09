@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { writeClient } from '@/sanity/lib/client';
-import { rateLimit, stripHtml, formatDate } from '@/lib/utils';
+import { rateLimit, stripHtml } from '@/lib/utils';
 
 const bookingSchema = z.object({
   clientName: z.string().min(2).max(100).transform(stripHtml),
