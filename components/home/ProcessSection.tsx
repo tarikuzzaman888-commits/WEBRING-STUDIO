@@ -9,25 +9,25 @@ const steps = [
     num: '01', 
     title: 'Consult', 
     description: 'We learn your brand, goals, and visual needs in a free strategy call.',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600&auto=format&fit=crop' // Strategy/Meeting
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop' // Team Strategy
   },
   { 
     num: '02', 
     title: 'Create', 
     description: 'Our team crafts AI-generated concepts and initial visual directions.',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop' // AI Art/Creative
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop' // Creative/UI/Design
   },
   { 
     num: '03', 
     title: 'Refine', 
     description: 'We iterate based on your feedback until every pixel is perfect.',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop' // Tech/Detail
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop' // Close up work
   },
   { 
     num: '04', 
     title: 'Deliver', 
     description: 'Final assets delivered in all formats, optimized for every platform.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop' // Data/Delivery
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop' // Assets/Delivery
   },
 ];
 

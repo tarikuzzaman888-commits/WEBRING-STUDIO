@@ -45,8 +45,15 @@ export const homePage = defineType({
       initialValue: 'Book a Free Call',
     }),
     defineField({
+      name: 'heroMainImage',
+      title: 'Hero Main Image (The big image on the right)',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'heroImages',
-      title: 'Hero Images (max 6)',
+      title: 'Additional Hero Gallery (Optional)',
       type: 'array',
       of: [{ type: 'image', options: { hotspot: true } }],
       validation: (rule) => rule.max(6),

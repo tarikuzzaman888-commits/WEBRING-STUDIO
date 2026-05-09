@@ -31,6 +31,7 @@ export interface HomePage {
   socialProof: string;
   cta1Text: string;
   cta2Text: string;
+  heroMainImage?: SanityImage;
   heroImages?: SanityImage[];
   marqueeText: string;
   stats?: StatItem[];
