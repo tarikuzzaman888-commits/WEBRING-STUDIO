@@ -35,22 +35,12 @@ export default function EmailInput({ value, onChange, id, placeholder, className
           id={id}
           type="email"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value.toLowerCase())}
           onBlur={() => setIsBlurred(true)}
           placeholder={placeholder || "yourname@example.com"}
           className="h-full w-full bg-transparent px-4 py-2 text-base outline-none text-[var(--text)]"
         />
       </div>
-
-      {isInvalid && (
-        <motion.p 
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-xs text-[#EF4444] font-medium"
-        >
-          Please enter a valid email address
-        </motion.p>
-      )}
     </div>
   );
 }
