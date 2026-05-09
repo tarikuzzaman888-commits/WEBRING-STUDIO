@@ -38,6 +38,8 @@ export default function EmailInput({ value, onChange, id, placeholder, className
           onChange={(e) => onChange(e.target.value.toLowerCase())}
           onBlur={() => setIsBlurred(true)}
           placeholder={placeholder || "yourname@example.com"}
+          name="email"
+          autoComplete="email"
           className="h-full w-full bg-transparent px-4 py-2 text-base outline-none text-[var(--text)]"
         />
       </div>

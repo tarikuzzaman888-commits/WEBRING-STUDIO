@@ -114,6 +114,8 @@ export default function BookPageClient({ services, availableDates, team }: BookP
       const result = await res.json();
       if (result.success) {
         setIsSuccess(true);
+        // Save email for next time
+        localStorage.setItem('webring_saved_email', email);
         toast.success('Booking confirmed! Check your email for details.');
       } else {
         toast.error(result.error || 'Failed to submit booking.');
@@ -124,6 +126,16 @@ export default function BookPageClient({ services, availableDates, team }: BookP
       setIsSubmitting(false);
     }
   };
+
+  // Load saved email on mount
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedEmail = localStorage.getItem('webring_saved_email');
+      if (savedEmail) {
+        setEmail(savedEmail);
+      }
+    }
+  });
 
   if (isSuccess) {
     return (

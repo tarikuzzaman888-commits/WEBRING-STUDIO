@@ -33,12 +33,27 @@ export default function ContactPageClient({ siteSettings }: ContactPageClientPro
   const watchEmail = watch('email');
   const watchPhone = watch('phone');
 
+  // Load saved email on mount
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedEmail = localStorage.getItem('webring_saved_email');
+      if (savedEmail) {
+        setTimeout(() => setValue('email', savedEmail), 0);
+      }
+    }
+  });
+
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
       const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       const result = await res.json();
-      if (result.success) { toast.success('Message sent! We\'ll get back to you within 24 hours.'); reset(); }
+      if (result.success) { 
+        toast.success('Message sent! We\'ll get back to you within 24 hours.'); 
+        // Save email for next time
+        localStorage.setItem('webring_saved_email', data.email);
+        reset(); 
+      }
       else { toast.error(result.error || 'Failed to send message.'); }
     } catch { toast.error('Something went wrong.'); }
     finally { setIsSubmitting(false); }
