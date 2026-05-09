@@ -78,10 +78,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-40 lg:pt-24 pb-16">
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
           
           {/* Left Content */}
-          <div className="lg:col-span-6 flex flex-col items-start">
+          <div className="lg:col-span-6 xl:col-span-7 flex flex-col items-start">
             
             {/* Badge */}
             <motion.div
@@ -96,10 +96,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 AI × PHOTOGRAPHY × BRANDING
               </span>
             </motion.div>
-
+ 
             {/* Giant Heading */}
             <motion.h1 
-              className="font-display font-black uppercase tracking-tight text-[4.5rem] md:text-[6rem] lg:text-[7rem] leading-[0.9] text-[var(--text)] mb-8"
+              className="font-display font-black uppercase tracking-tight text-[3.8rem] md:text-[5.5rem] lg:text-[5rem] xl:text-[7rem] leading-[0.9] text-[var(--text)] mb-8 whitespace-nowrap lg:whitespace-normal"
               custom={1}
               initial="hidden"
               animate="visible"
@@ -150,7 +150,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           {/* Right — Image Carousel */}
-          <div className="lg:col-span-6 relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] xl:aspect-[3/3.5] rounded-xl overflow-hidden mt-8 lg:mt-0 bg-[var(--surface)] group">
+          <div className="lg:col-span-6 xl:col-span-5 relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] xl:aspect-[3/3.5] rounded-xl overflow-hidden mt-8 lg:mt-0 bg-[var(--surface)] group">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
