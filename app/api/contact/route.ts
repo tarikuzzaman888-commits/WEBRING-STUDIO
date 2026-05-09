@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { writeClient } from '@/sanity/lib/client';
 import { rateLimit, stripHtml } from '@/lib/utils';
 
-const getResend = () => new Resend(process.env.RESEND_API_KEY || 'placeholder');
+// Email transporter configuration
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
+
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'hello@webring.studio';
 
 const contactSchema = z.object({
@@ -52,11 +62,11 @@ export async function POST(request: NextRequest) {
       console.error('Failed to save to Sanity:', sanityError);
     }
 
-    // 2. Send emails via Resend
-    if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== 'your_resend_api_key') {
+    // 2. Send emails via Nodemailer
+    if (process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
       // Send to team
-      await getResend().emails.send({
-        from: 'WEBRING Contact <onboarding@resend.dev>',
+      await transporter.sendMail({
+        from: `"WEBRING Contact" <${process.env.SMTP_USER}>`,
         to: CONTACT_EMAIL,
         subject: `📩 New Message: ${data.subject}`,
         html: `
@@ -81,8 +91,8 @@ export async function POST(request: NextRequest) {
       });
 
       // Auto-reply to client
-      await getResend().emails.send({
-        from: 'WEBRING <onboarding@resend.dev>',
+      await transporter.sendMail({
+        from: `"WEBRING" <${process.env.SMTP_USER}>`,
         to: data.email,
         subject: `We've received your message, ${data.name}!`,
         html: `
