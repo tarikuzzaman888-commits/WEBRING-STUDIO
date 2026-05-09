@@ -1,7 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import nodemailer from 'nodemailer';
 import { writeClient } from '@/sanity/lib/client';
-import { rateLimit, stripHtml } from '@/lib/utils';
+import { rateLimit, stripHtml, formatDate } from '@/lib/utils';
+
+// Email transporter configuration
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
+
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'hello@webring.studio';
 
 const bookingSchema = z.object({
   clientName: z.string().min(2).max(100).transform(stripHtml),
@@ -35,7 +49,7 @@ export async function POST(request: NextRequest) {
     // Save to Sanity
     let bookingId = 'local-' + Date.now();
     try {
-      if (process.env.SANITY_API_TOKEN && process.env.SANITY_API_TOKEN !== 'your_write_token_here') {
+      if (process.env.SANITY_API_TOKEN) {
         const result = await writeClient.create({
           _type: 'booking',
           clientName: data.clientName,
@@ -58,7 +72,64 @@ export async function POST(request: NextRequest) {
       console.error('Failed to save booking to Sanity:', sanityError);
     }
 
-    // Send to Google Sheets (Optional Webhook)
+    // Send emails via Nodemailer
+    if (process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+      const servicesHtml = data.services.map(s => `<li>${s}</li>`).join('');
+      const formattedDate = formatDate(data.selectedDate);
+
+      // Alert to Agency (You)
+      await transporter.sendMail({
+        from: `"WEBRING Bookings" <${process.env.SMTP_USER}>`,
+        to: CONTACT_EMAIL,
+        subject: `🗓️ New Booking: ${data.clientName} — ${formattedDate}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #C8A96E;">New Booking Received</h2>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+              <h3 style="margin: 0 0 16px;">Client Details</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr><td style="padding: 6px 0; color: #666;">Name</td><td style="padding: 6px 0; font-weight: bold;">${data.clientName}</td></tr>
+                <tr><td style="padding: 6px 0; color: #666;">Email</td><td style="padding: 6px 0;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+                ${data.whatsapp ? `<tr><td style="padding: 6px 0; color: #666;">WhatsApp</td><td style="padding: 6px 0;">${data.whatsapp}</td></tr>` : ''}
+                ${data.company ? `<tr><td style="padding: 6px 0; color: #666;">Company</td><td style="padding: 6px 0;">${data.company}</td></tr>` : ''}
+              </table>
+            </div>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+              <h3 style="margin: 0 0 16px;">Project Details</h3>
+              <p><strong>Services:</strong></p><ul>${servicesHtml}</ul>
+              <p><strong>Category:</strong> ${data.productCategory}</p>
+              <p><strong>Budget:</strong> ${data.budget}</p>
+              ${data.notes ? `<p><strong>Notes:</strong> ${data.notes}</p>` : ''}
+            </div>
+            <div style="background: #C8A96E; color: #0A0A0A; padding: 20px; border-radius: 12px; text-align: center;">
+              <h3 style="margin: 0;">📅 ${formattedDate}</h3>
+              <p style="margin: 4px 0 0; font-size: 18px; font-weight: bold;">⏰ ${data.selectedTime} GMT+6</p>
+            </div>
+          </div>
+        `,
+      });
+
+      // Confirmation to Client
+      await transporter.sendMail({
+        from: `"WEBRING" <${process.env.SMTP_USER}>`,
+        to: data.email,
+        subject: `Your WEBRING Strategy Call is Confirmed!`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #C8A96E;">You're booked, ${data.clientName}! 🎉</h2>
+            <p>Your free strategy call with the WEBRING team is confirmed.</p>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
+              <h3 style="margin: 0;">📅 ${formattedDate}</h3>
+              <p style="margin: 4px 0 0; font-size: 18px; font-weight: bold;">⏰ ${data.selectedTime} GMT+6</p>
+            </div>
+            <p>We'll reach out via email before the call to finalize details.</p>
+            <p style="margin-top: 24px; color: #666;">— The WEBRING Team</p>
+          </div>
+        `,
+      });
+    }
+
+    // Send to Google Sheets
     const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
     if (GOOGLE_SHEET_URL) {
       try {
@@ -70,8 +141,8 @@ export async function POST(request: NextRequest) {
             submittedAt: new Date().toISOString()
           }),
         });
-      } catch (sheetError) {
-        console.error('Failed to save to Google Sheets:', sheetError);
+      } catch (error) {
+        console.error('Failed to save to Google Sheets:', error);
       }
     }
 
