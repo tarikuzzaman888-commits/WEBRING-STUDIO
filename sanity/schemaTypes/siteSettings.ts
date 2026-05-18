@@ -13,6 +13,13 @@ export const siteSettings = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'maintenanceMode',
+      title: 'Maintenance Mode (Offline Toggle)',
+      description: 'Turn this ON to put the website in offline/maintenance mode.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',

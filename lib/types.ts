@@ -4,6 +4,7 @@
 
 export interface SiteSettings {
   companyName: string;
+  maintenanceMode?: boolean;
   tagline: string;
   email: string;
   whatsapp?: string;
